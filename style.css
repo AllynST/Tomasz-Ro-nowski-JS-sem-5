@@ -1,4 +1,4 @@
-/* body{
+ body{
     width: 100vw;
     height: 100vh;
     display:flex;
@@ -8,30 +8,28 @@
     padding: 0;
 }
 
+.deleteBtn{
+    margin:10px 5px;
+    width:25px;
+    height:25px;
+    background-color: red;
+}
 
 main#wrapper{
-    background-color: cyan;
-    width:1000px;
-    height:400px;
+   width: 300px;
+    box-shadow: 0px 0px 6px 0px rgba(66, 68, 90, 1);
+    padding:20px;
 }
 
-form{
-    position:relative;
-    width: 100%;
-  
-   
-}
-form *{
-    margin: 2.5% 5%;
+input{
+    margin: 10px 0;
 }
 
-form input{
-  
+
+main#wrapper >span{
+    margin:0 10px;
 }
-form>input,button{
-    padding: 2.5%;
-    float:right;
-    right:0px;
-    width:60%;  
-   
-} */
+
+#inputContainer{
+    width:200px;
+}
