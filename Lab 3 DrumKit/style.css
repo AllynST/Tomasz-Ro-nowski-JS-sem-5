@@ -1,0 +1,148 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+div#gridWrapper {
+    position: relative;
+    width: 95%;
+    height: 95%;
+    display: grid;
+    grid-template-columns: 10% 80% 10%;
+    grid-template-rows: 80% 20%;
+    grid-template-areas:
+        "trackArea trackArea controls"
+        "pianoKeyboard pianoKeyboard pianoKeyboard";
+}
+
+div#pianoKeyboard {
+    grid-area: pianoKeyboard;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    width: 100%;
+}
+div.pianoOctave {
+    display: flex;
+    width: 20%;
+    height: 100%;
+}
+
+div#pianoKeyboard .pianoOctaveLeft {
+    display: flex;
+    justify-content: center;
+    width: 55%;
+    position: relative;
+    height: 100%;
+}
+div#pianoKeyboard .pianoOctaveRight {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 45%;
+    height: 100%;
+}
+
+
+div.pianoOctaveLeft div.whiteKeysContainer {
+    width: 100%;
+    display: flex;
+    position: absolute;
+    top: 0px;
+    height: 100%;
+}
+div.pianoOctaveLeft div.blackKeysContainer {
+    width: 75%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    height: 50%;
+    position: absolute;
+    top: 0px;
+}
+
+div.pianoOctaveRight div.whiteKeysContainer {
+    width: 100%;
+    display: flex;
+    position: absolute;
+    top: 0px;
+    height: 100%;
+}
+
+div.pianoOctaveRight div.blackKeysContainer {
+    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-between;
+    gap:20px;    
+    height: 50%;
+    position: absolute;
+    top: 0px;
+}
+
+div.pianoOctaveLeft .keyBlack {
+    width: 25px;
+    height: 100%;
+    background: black;
+}
+/* TODO TO PROBLEM DLA MNIE Z PRZYSZŁOŚCI PROSZE NAPRAW TEN JEBANY PRZYCISK */
+
+div.pianoOctaveLeft .keyWhite {
+    border: 1px solid black;
+    position: relative;
+    width: 25%;
+    height: 100%;
+    background: #e3e3e3;
+}
+
+div.pianoOctaveRight .keyWhite{
+    border: 1px solid black;
+    position: relative;
+    width: 33%;
+    height: 100%;
+    background: #e3e3e3;
+}
+div.pianoOctaveRight .keyBlack{
+    width: 25px;
+    height: 100%;
+    background: black;
+}
+div#timeLineIndicator {
+    background-color: white;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 2px;
+    height: 80%;
+}
+
+div#controls {
+    grid-area: controls;
+}
+
+div#trackArea {
+    overflow-y: scroll;
+    background-color: royalblue;
+    grid-area: trackArea;
+}
+div#timelane {
+    background-color: black;
+    width: 100%;
+    height: 50px;
+}
+div#trackContainer {
+    width: 100%;
+    height: 100%;
+}
+
+div.track {
+    background-color: grey;
+    width: 100%;
+    height: 100px;
+}

@@ -5,32 +5,201 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<audio class="PianoKey" src="./PianoSounds/key01.mp3" id="E" controls />
-<audio class="PianoKey" src="./PianoSounds/key02.mp3" id="R" />
-<audio class="PianoKey" src="./PianoSounds/key03.mp3" id="T"/>
-<audio class="PianoKey" src="./PianoSounds/key04.mp3" id="Y"/>
-<audio class="PianoKey" src="./PianoSounds/key05.mp3" id="U"/>
-<audio class="PianoKey" src="./PianoSounds/key06.mp3" id="I"/>
-<audio class="PianoKey" src="./PianoSounds/key07.mp3" id="O"/>
-<audio class="PianoKey" src="./PianoSounds/key08.mp3" id="D"/>
-<audio class="PianoKey" src="./PianoSounds/key09.mp3" id="F"/>
-<audio class="PianoKey" src="./PianoSounds/key10.mp3" id="G"/>
-<audio class="PianoKey" src="./PianoSounds/key11.mp3" id="H"/>
-<audio class="PianoKey" src="./PianoSounds/key12.mp3" id="J"/>
-<audio class="PianoKey" src="./PianoSounds/key13.mp3" id="K"/>
-<audio class="PianoKey" src="./PianoSounds/key14.mp3" id="L"/>
-<audio class="PianoKey" src="./PianoSounds/key15.mp3" id="C"/>
-<audio class="PianoKey" src="./PianoSounds/key16.mp3" id="V"/>
-<audio class="PianoKey" src="./PianoSounds/key17.mp3" id="B"/>
-<audio class="PianoKey" src="./PianoSounds/key18.mp3" id="N"/>
-<audio class="PianoKey" src="./PianoSounds/key19.mp3" id="M"/>
-<audio class="PianoKey" src="./PianoSounds/key20.mp3" id="Comma"/>
-<audio class="PianoKey" src="./PianoSounds/key21.mp3" id="Period"/>
+    <div id="gridWrapper">
+        <div id="timeLineIndicator"></div>
+        <div id="controls">
+            <button onclick="changeTrack(0)">change to Track 0</button>
+            <button onclick="changeTrack(1)">change to drums</button>
+        </div>
+        <div id="trackArea">
+            <!-- TODO TU BĘDĄ ŚCIEŻKI UTWORÓW OVERFLOW SCROLL Z PLUSEM NA DOLE DO DODAWANIA TRACKÓW
+            -po wciśnięciu przycisku wyświetla się wybór instrumentów            
+            -->
+            <div id="timelane"></div>
+            <div id="trackContainer">
+                <div class="track">
+                </div>
+            </div>
+        
+        </div>
+
+    <!-- TODO ZROBIĆ PRZESUWANY DIV DO WSZYSTKICH INSTRUMENTÓW (SLIDING) -->
+        
+         <div id="pianoKeyboard">
+            <div class="pianoOctave">
+                <div class="pianoOctaveLeft">
+                    <div class="whiteKeysContainer">
+                        <div class="keyWhite"></div>
+                        <div class="keyWhite"></div>
+                        <div class="keyWhite"></div>
+                        <div class="keyWhite"></div>
+                    </div>
+                    <div class="blackKeysContainer">
+                        <div class="keyBlack"></div>
+                        <div class="keyBlack"></div>
+                        <div class="keyBlack"></div>
+                    </div>
+
+            
+                </div>
+                <div class="pianoOctaveRight">
+                    <div class="whiteKeysContainer">
+                        <div class="keyWhite"></div>
+                        <div class="keyWhite"></div>
+                        <div class="keyWhite"></div>
+                        
+                    </div>
+                    <div class="blackKeysContainer">
+                        
+                        <div class="keyBlack"></div>
+                        <div class="keyBlack"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="pianoOctave">
+                <div class="pianoOctaveLeft">
+                    <div class="whiteKeysContainer">
+                        <div class="keyWhite"></div>
+                        <div class="keyWhite"></div>
+                        <div class="keyWhite"></div>
+                        <div class="keyWhite"></div>
+                    </div>
+                    <div class="blackKeysContainer">
+                        <div class="keyBlack"></div>
+                        <div class="keyBlack"></div>
+                        <div class="keyBlack"></div>
+                    </div>
+
+            
+                </div>
+                <div class="pianoOctaveRight">
+                    <div class="whiteKeysContainer">
+                        <div class="keyWhite"></div>
+                        <div class="keyWhite"></div>
+                        <div class="keyWhite"></div>
+                        
+                    </div>
+                    <div class="blackKeysContainer">
+                        
+                        <div class="keyBlack"></div>
+                        <div class="keyBlack"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="pianoOctave">
+                <div class="pianoOctaveLeft">
+                    <div class="whiteKeysContainer">
+                        <div class="keyWhite"></div>
+                        <div class="keyWhite"></div>
+                        <div class="keyWhite"></div>
+                        <div class="keyWhite"></div>
+                    </div>
+                    <div class="blackKeysContainer">
+                        <div class="keyBlack"></div>
+                        <div class="keyBlack"></div>
+                        <div class="keyBlack"></div>
+                    </div>
+
+            
+                </div>
+                <div class="pianoOctaveRight">
+                    <div class="whiteKeysContainer">
+                        <div class="keyWhite"></div>
+                        <div class="keyWhite"></div>
+                        <div class="keyWhite"></div>
+                        
+                    </div>
+                    <div class="blackKeysContainer">
+                        
+                        <div class="keyBlack"></div>
+                        <div class="keyBlack"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="pianoOctave">
+                <div class="pianoOctaveLeft">
+                    <div class="whiteKeysContainer">
+                        <div class="keyWhite"></div>
+                        <div class="keyWhite"></div>
+                        <div class="keyWhite"></div>
+                        <div class="keyWhite"></div>
+                    </div>
+                    <div class="blackKeysContainer">
+                        <div class="keyBlack"></div>
+                        <div class="keyBlack"></div>
+                        <div class="keyBlack"></div>
+                    </div>
+
+            
+                </div>
+                <div class="pianoOctaveRight">
+                    <div class="whiteKeysContainer">
+                        <div class="keyWhite"></div>
+                        <div class="keyWhite"></div>
+                        <div class="keyWhite"></div>
+                        
+                    </div>
+                    <div class="blackKeysContainer">
+                        
+                        <div class="keyBlack"></div>
+                        <div class="keyBlack"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="pianoOctave">
+                <div class="pianoOctaveLeft">
+                    <div class="whiteKeysContainer">
+                        <div class="keyWhite"></div>
+                        <div class="keyWhite"></div>
+                        <div class="keyWhite"></div>
+                        <div class="keyWhite"></div>
+                    </div>
+                    <div class="blackKeysContainer">
+                        <div class="keyBlack"></div>
+                        <div class="keyBlack"></div>
+                        <div class="keyBlack"></div>
+                    </div>
+
+            
+                </div>
+                <div class="pianoOctaveRight">
+                    <div class="whiteKeysContainer">
+                        <div class="keyWhite"></div>
+                        <div class="keyWhite"></div>
+                        <div class="keyWhite"></div>
+                        
+                    </div>
+                    <div class="blackKeysContainer">
+                        
+                        <div class="keyBlack"></div>
+                        <div class="keyBlack"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+<div id="PianoSounds">
+    
+    
+</div>
+<div id="DrumSounds">
+    <audio class="DrumKey" src="./DrumSounds/Bass-Drum-Hit-Level-1a-www.fesliyanstudios.com.mp3" id="E"/>
+    <audio class="DrumKey" src="./DrumSounds/Floor-Tom-Drum-Hit-Level-2A-www.fesliyanstudios.com.mp3" id="R"/>
+    <audio class="DrumKey" src="./DrumSounds/Floor-Tom-Drum-Hit-Level-2B-www.fesliyanstudios.com.mp3" id="T"/>
+    <audio class="DrumKey" src="./DrumSounds/Hi-Hat-Closed-Hit-B3-www.fesliyanstudios.com.mp3" id="Y"/>
+    <audio class="DrumKey" src="./DrumSounds/Floor-Tom-Drum-Hit-Level-1B-www.fesliyanstudios.com.mp3" id="U"/>
+    <audio class="DrumKey" src="./DrumSounds/Hi-Hat-Closed-Hit-A2-www.fesliyanstudios.com.mp3" id="I"/>
+    <audio class="DrumKey" src="./DrumSounds/Bass-Drum-Hit-Level-2a-www.fesliyanstudios.com.mp3" id="O"/>
+
+</div>
 
 <script src="piano.js"></script>
+<script src="drumKit.js"></script>
 <script src="conductor.js"></script>
 <script src="main.js"></script>
 
