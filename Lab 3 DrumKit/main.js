@@ -62,19 +62,44 @@ const changeTrack=(track) =>{
 }
 
 //TODO might be useless
-const recordingHelper = (key) => {
-  
- 
+const recordingHelper = (key) => {   
     if(key == 'Q'){
-        conductor.recordHandler()
-        return;
-    }
-    
-
-    if(conductor.recordState == true){
-        
-    }
+        conductor.recordHandler()       
+    }  
 }
+
+const addTrackBtn = document.querySelector("#addTrackBtn");
+const dummyInstrumentsContainer = document.querySelector("#dummyInstrumentSelectionDiv");
+
+let dummyState = false;
+addTrackBtn.addEventListener("click", () =>{
+    
+    if(dummyState){
+        dummyInstrumentsContainer.style.height = "200px";
+        addTrackBtn.innerHTML = "-"
+    }
+    else{
+        dummyInstrumentsContainer.style.height = "0px";
+        addTrackBtn.innerHTML = "+"
+    }
+    dummyState = !dummyState
+    
+})
+
+const instrumentButton = Array.from(dummyInstrumentsContainer.children)
+
+instrumentButton.forEach((e)=>{
+    e.addEventListener("click",()=>{
+        if(e.id == "pianoInst"){
+            conductor.addTrack(new Piano())
+            return
+        }
+        if(e.id == "drumInst"){
+            conductor.addTrack(new Drum());
+        }
+        
+    })
+})
 
 
 

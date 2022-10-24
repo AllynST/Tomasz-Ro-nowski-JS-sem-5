@@ -1,5 +1,5 @@
 class Conductor {
-    track = [[new Piano()],[new Drum()]];
+    track = [[new Piano()]];
     
 
     //Lenght of all the tracks measured in tacts
@@ -8,7 +8,7 @@ class Conductor {
     tactLenght = 20;
     //array of arrays first element contain an instrument
     chosenTrack = 0;
-    currentInstrument = new Drum();
+    
 
     recordState = false;
     //tackCounter has to start at 1 because [0] contains the instrument
@@ -79,9 +79,17 @@ class Conductor {
     playRecording = (track) => {};
 
     addTrack = (instument) => {
+        const trackContainer = document.querySelector("#trackContainer")
+        const elem = document.createElement("div")
+        
+        elem.className = "track"
+        trackContainer.prepend(elem);
+
         let newTrack = [instument];
-        this.track.add(newTrack);
+        console.log(newTrack)
+        this.track.push(newTrack);
     };
+    //TODO REMOVE TRACK
 
     playSound = (key) => {
         console.log(key)
