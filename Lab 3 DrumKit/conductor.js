@@ -56,11 +56,11 @@ class Conductor {
     timeLineHandler = () =>{
         if(this.timeLineState != null){
             clearInterval(this.timeLineState);
-            return
+            return;
         }
         const marker = document.querySelector("#timeLineIndicator");
         const markerMaxOffset = document.querySelector("#trackArea").offsetWidth;
-        const markerMovement = markerMaxOffset/this.timelane
+        const markerMovement = markerMaxOffset/this.timelane;
         let markerMovementHelper = 0;
         marker.style.left = `${markerMovementHelper}px`;
 
@@ -74,24 +74,61 @@ class Conductor {
         },20)
 
     }
+
+    selectTrack = (trackNum) =>{
+        //TODO SELECT TRACK
+    }
   
 
     playRecording = (track) => {};
 
-    addTrack = (instument) => {
+    addTrack = (instrument) => {
         const trackContainer = document.querySelector("#trackContainer")
-        const elem = document.createElement("div")
+        const elem = document.createElement("div");
+        elem.className = "trackRow";
+        const track = document.createElement("div") ;
+        track.id=this.track.length;
+        track.className="track"     ;  
+        const img = document.createElement("img")   ;     
+        img.className = "trackLabel";
+        const muteBtn = document.createElement("img");
         
-        elem.className = "track"
+        const deleteBtn = document.createElement("img");
+        muteBtn.className = "controls";
+        muteBtn.src = "./images/pause.png"
+        
+        deleteBtn.className = "controls";
+        deleteBtn.src = "./images/Delete-Transparent.png"
+        
+        if(instrument instanceof Piano){
+            img.src = `./images/piano.png`;
+        }
+        else if(instrument instanceof Drum){
+            img.src = `./images/drum.png`;
+        }
+        
+        elem.appendChild(img);
+        elem.appendChild(track);
+        elem.appendChild(muteBtn);
+        elem.appendChild(deleteBtn);
+        
+        
+       
+
+        
+        
         trackContainer.prepend(elem);
 
-        let newTrack = [instument];
+        let newTrack = [instrument];
         console.log(newTrack)
         this.track.push(newTrack);
     };
     //TODO REMOVE TRACK
 
     playSound = (key) => {
+
+
+        //////////////////////////////////////////////////
         console.log(key)
        
         if (this.recordState == true) {
