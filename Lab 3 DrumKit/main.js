@@ -1,4 +1,4 @@
-
+"use strict"
 const pianoKeysWhite = Array.from(document.querySelectorAll(".keyWhite"));
 const pianoKeysBlack = Array.from(document.querySelectorAll(".keyBlack"));
 

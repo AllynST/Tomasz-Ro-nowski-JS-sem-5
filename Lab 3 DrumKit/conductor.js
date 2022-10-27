@@ -7,7 +7,7 @@ class Conductor {
     //Duration of one tact in miliseconds
     tactLenght = 20;
     //array of arrays first element contain an instrument
-    chosenTrack = 0;
+    chosenTrack = 1;
     
 
     recordState = false;
@@ -32,8 +32,11 @@ class Conductor {
             clearInterval(interval);
             // this.Track.push(...this.chosenTrack)
             this.recordState = !this.recordState;
+            this.tactCounter = 1;
+            document.querySelector("#timeLineIndicator").style.left = "0px"
             return;
         }
+    
         this.recordState = !this.recordState;
 
         interval = setInterval(() => { 
@@ -86,27 +89,26 @@ class Conductor {
 
     addTrack = (instrument) => {
         const index = this.track.length
-
         const trackContainer = document.querySelector("#trackContainer")
         const elem = document.createElement("div");
         elem.className = "trackRow";
         elem.id = `TrackRow${index}`
         const track = document.createElement("div") ;
-        track.id=`Track${index}`;
+        
         track.className="track"     ;  
-        const img = document.createElement("img")   ;    
-        img.id=`Label${index}`; 
+        const img = document.createElement("img")   ;     
+        img.id = index;
         img.className = "trackLabel";
         const muteBtn = document.createElement("img");
         
         const deleteBtn = document.createElement("img");
         muteBtn.className = "controls";
         muteBtn.src = "./images/pause.png"
-        muteBtn.id = `Mute${index}`
+        muteBtn.id = index;
         
         deleteBtn.className = "controls";
         deleteBtn.src = "./images/Delete-Transparent.png"
-        deleteBtn.id=`Delete${index}`
+        deleteBtn.id = index;
         
         if(instrument instanceof Piano){
             img.src = `./images/piano.png`;
@@ -120,25 +122,43 @@ class Conductor {
         elem.appendChild(track);
         elem.appendChild(muteBtn);
         elem.appendChild(deleteBtn);
+        
+        const labelElem = elem.appendChild(img);
+        elem.appendChild(track);
+        const muteElem = elem.appendChild(muteBtn);
+        const deleteElem = elem.appendChild(deleteBtn);
+        
+        
        
         trackContainer.prepend(elem);
-        
-        document.querySelector(`#Label${index}`).addEventListener("click",()=>{
-            console.log(`Changed track`);
-            this.selectTrack(index)
-        })
-        document.querySelector(`#Delete${index}`).addEventListener("click",()=>{
-            console.log(`Deleted Track`);
-            this.track.splice(this.track,1)
-        })
-        document.querySelector(`#Mute${index}`).addEventListener("click",()=>{
+        let instrumentsDiv = document.querySelector("#instrumentsInner")
+
+        labelElem.addEventListener("click",(e)=>{
+            console.log(this.track[e.target.id][0])
+            this.chosenTrack = e.target.id;
+
+            if(this.track[e.target.id][0] instanceof Piano){
+                instrumentsDiv.style.top ="0%"
+            }
+            else if(this.track[e.target.id][0] instanceof Drum){
+                instrumentsDiv.style.top = "-100%"
+            }
+            else{
+                console.log("something went wrong")
+            }
             
-            this.track[index].muteTrack();
-           
+
+        })
+        muteElem.addEventListener("click",(e)=>{
+            
+            console.log(`${e.target.id} has been muted`)
+        })
+        deleteElem.addEventListener("click" , (e)=>{
+            console.log(e.target.id+" has been deleted")
         })
 
-        this.track.push(new Track(instrument))
-
+        let newTrack = [instrument];
+        this.track.push(newTrack);
     };
     //TODO REMOVE TRACK
 
