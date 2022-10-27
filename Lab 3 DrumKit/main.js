@@ -48,7 +48,7 @@ document.addEventListener("keypress",event =>{
    
     
     const key = event.key.toLocaleUpperCase();
-    console.log(key)
+    
     recordingHelper(key);
     if(key !="Q"){
         conductor.playSound(key)

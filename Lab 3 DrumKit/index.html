@@ -11,30 +11,18 @@
 
     <div id="gridWrapper">
         <div id="timeLineIndicator"></div>
-        <div id="controls">
-            <!-- TODO DELETE TEMP CONTROLS -->
-            <button onclick="changeTrack(0)">change to Track 0</button>
-            <button onclick="changeTrack(1)">change to drums</button>
-        </div>
+        
         <div id="trackArea">
             <!-- TODO TU BĘDĄ ŚCIEŻKI UTWORÓW OVERFLOW SCROLL Z PLUSEM NA DOLE DO DODAWANIA TRACKÓW
             -po wciśnięciu przycisku wyświetla się wybór instrumentów            
             -->
            
             <div id="trackContainer">
-                <div class="trackRow">
-                    <img class="trackLabel" src="./images/piano.png" />
-                    <div class="track" >
-                    </div>
-                    
-                    <img src="./images/pause.png" class="controls" alt="pause">
-                    <img src="./images/Delete-Transparent.png" class="controls" alt="delete">
-                   
-                </div>
+               
                 <button id="addTrackBtn">+</button>
                 <div id="dummyInstrumentSelectionDiv">
-                    <img id="pianoInst" src="./images/piano.png" alt="">
-                    <img id="drumInst" src="./images/drum.png" alt="">
+                    <img data-index="0" id="pianoInst" src="./images/piano.png" alt="">
+                    <img data-index="0" id="drumInst" src="./images/drum.png" alt="">
                 </div>
             </div>            
         
@@ -211,6 +199,7 @@
 
 </div>
 
+<script src="track.js"></script>
 <script src="piano.js"></script>
 <script src="drumKit.js"></script>
 <script src="conductor.js"></script>

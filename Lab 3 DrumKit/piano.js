@@ -12,7 +12,7 @@ class Piano{
             
             if(sound != undefined){
                 
-                console.log(`${key} has been played`)
+                //console.log(`${key} has been played`)
                 sound.currentTime = 0;
                 sound.play();
             }        
