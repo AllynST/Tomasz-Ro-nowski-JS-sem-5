@@ -62,6 +62,7 @@ class Conductor {
             return;
         }
         const marker = document.querySelector("#timeLineIndicator");
+        marker.style.display = 'block';
         console.log(document.querySelector(".track").offsetWidth)
         //const markerMaxOffset = document.querySelector(".track").offsetWidth+150;
         const markerMaxOffset = 1555;
@@ -88,32 +89,36 @@ class Conductor {
     playRecording = (track) => {};
 
     addTrack = (instrument) => {
+        let newTrack;
         const index = this.track.length
         const trackContainer = document.querySelector("#trackContainer")
         const elem = document.createElement("div");
         elem.className = "trackRow";
-        elem.id = `TrackRow${index}`
-        const track = document.createElement("div") ;
-        
-        track.className="track"     ;  
+        elem.id = index;
+
+        const track = document.createElement("div") ;        
+        track.className="track";  
         const img = document.createElement("img")   ;     
         img.id = index;
         img.className = "trackLabel";
-        const muteBtn = document.createElement("img");
-        
-        const deleteBtn = document.createElement("img");
+
+        const muteBtn = document.createElement("img"); 
         muteBtn.className = "controls";
         muteBtn.src = "./images/pause.png"
         muteBtn.id = index;
-        
+               
+        const deleteBtn = document.createElement("img");        
         deleteBtn.className = "controls";
         deleteBtn.src = "./images/Delete-Transparent.png"
         deleteBtn.id = index;
         
+        
         if(instrument instanceof Piano){
             img.src = `./images/piano.png`;
+            newTrack = new Track(new Piano());
         }
         else if(instrument instanceof Drum){
+            newTrack = new Track(new Drum());
             img.src = `./images/drum.png`;
         }
 
@@ -133,14 +138,13 @@ class Conductor {
         trackContainer.prepend(elem);
         let instrumentsDiv = document.querySelector("#instrumentsInner")
 
-        labelElem.addEventListener("click",(e)=>{
-            console.log(this.track[e.target.id][0])
+        labelElem.addEventListener("click",(e)=>{       
             this.chosenTrack = e.target.id;
 
-            if(this.track[e.target.id][0] instanceof Piano){
+            if(this.track[e.target.id].instrument instanceof Piano){
                 instrumentsDiv.style.top ="0%"
             }
-            else if(this.track[e.target.id][0] instanceof Drum){
+            else if(this.track[e.target.id].instrument instanceof Drum){
                 instrumentsDiv.style.top = "-100%"
             }
             else{
@@ -157,7 +161,7 @@ class Conductor {
             console.log(e.target.id+" has been deleted")
         })
 
-        let newTrack = [instrument];
+        
         this.track.push(newTrack);
     };
     //TODO REMOVE TRACK

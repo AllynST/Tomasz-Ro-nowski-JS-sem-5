@@ -5,8 +5,7 @@ class Track{
     instrument
 
 
-    constructor(instrument){
-        console.log(instrument)
+    constructor(instrument){       
         this.instrument = instrument;
     }
 
