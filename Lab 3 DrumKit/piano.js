@@ -5,7 +5,9 @@ class Piano {
 
     async playSound(key) {
         //I have no idea whats going on in here
-        //Following code took 3 cups of coffe to make
+
+        //Following code and synchronization 
+        //took 3 cups of coffee to make(edit 4)
         
         const context = new AudioContext();
 
@@ -14,7 +16,6 @@ class Piano {
             context.sampleRate * 1,
             context.sampleRate
         );
-
 
         const primaryGainControl = context.createGain();
         primaryGainControl.gain.setValueAtTime(1, 0);

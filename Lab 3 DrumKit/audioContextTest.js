@@ -1,31 +1,6 @@
 
 
 
-const context = new AudioContext();
-
-const buffer = context.createBuffer(
-    1,
-    context.sampleRate*1,
-    context.sampleRate
-)
-
-
-const channelData = buffer.getChannelData(0)
-
-for(let i = 0;i<buffer.length;i++){
-    channelData[i] = Math.random() *2 -1;
-}
-
-
-const whiteNoiseSource = context.createBufferSource();
-
-whiteNoiseSource.buffer = buffer;
-
-const primaryGainControl = context.createGain();
-primaryGainControl.gain.setValueAtTime(1,0);
-
-whiteNoiseSource.connect(primaryGainControl);
-primaryGainControl.connect(context.destination)
 
 
 
