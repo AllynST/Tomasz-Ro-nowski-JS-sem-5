@@ -7,8 +7,7 @@ class Conductor {
     //Duration of one tact in miliseconds
     tactLenght = 20;
     //array of arrays first element contain an instrument
-    chosenTrack = 1;
-    
+    chosenTrack = 1;    
 
     recordState = false;
     //tackCounter has to start at 1 because [0] contains the instrument
@@ -64,6 +63,7 @@ class Conductor {
         const marker = document.querySelector("#timeLineIndicator");
         marker.style.display = 'block';
         console.log(document.querySelector(".track").offsetWidth)
+        //TODO FIX ISSUE WITH CHANGING SCREEN WIDTH
         //const markerMaxOffset = document.querySelector(".track").offsetWidth+150;
         const markerMaxOffset = 1555;
         const markerMovement = (markerMaxOffset-150)/this.timelane;
