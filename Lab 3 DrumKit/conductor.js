@@ -1,17 +1,17 @@
 class Conductor {
     track = [];
-    
 
-    //Lenght of all the tracks measured in tacts
-    timelane = 300;
-    //Duration of one tact in miliseconds
-    tactLenght = 20;
+    AudioContext = null;
+    
+    //Duration of the track in seconds
+    timeLineDuration = 20
+
     //array of arrays first element contain an instrument
     chosenTrack = 1;    
 
     recordState = false;
     //tackCounter has to start at 1 because [0] contains the instrument
-    tactCounter = 2;
+ 
 
     timeLineState;
     
@@ -23,35 +23,44 @@ class Conductor {
     
 
     recordHandler = (event) => {
+        console.log("record handler working")
         let interval;
         this.timeLineHandler();
-                
+        this.AudioContext= new AudioContext();
 
+      
         if (this.recordState == true) {
             clearInterval(interval);
-            // this.Track.push(...this.chosenTrack)
-            this.recordState = !this.recordState;
-            this.tactCounter = 1;
+            // this.Track.push(...this.chosenTrack)          
+                      
+        this.recordState = !this.recordState;
             document.querySelector("#timeLineIndicator").style.left = "0px"
             return;
         }
-    
+                    
         this.recordState = !this.recordState;
 
-        interval = setInterval(() => { 
-               
-            this.track.forEach((t) => {
-                
-              
-                t.playSoundByIndex(this.tactCounter);
-            });
+        console.log("reached")
+        setInterval
+        const test = setInterval(()=>{
+            console.log("Timelineended")
 
-            this.tactCounter++;
+              if (this.AudioContext.currentTime > this.timeLineDuration) {
+                  this.AudioContext = new AudioContext();
+              }
 
-            if (this.tactCounter > this.timelane) {
-                this.tactCounter = 1;
-            }
-        }, this.tactLenght);
+            this.track.forEach(t=>{
+                console.log(t)
+                t.playTrack();
+            })
+
+        },this.timeLineDuration*1000)
+    
+
+        
+
+          
+       
     };
     //TODO MOVE TIMELINE TO ANOTHER CLASS?
 
@@ -62,8 +71,7 @@ class Conductor {
         }
         const marker = document.querySelector("#timeLineIndicator");
         marker.style.display = 'block';
-        console.log(document.querySelector(".track").offsetWidth)
-        //TODO FIX ISSUE WITH CHANGING SCREEN WIDTH
+         //TODO FIX ISSUE WITH CHANGING SCREEN WIDTH
         //const markerMaxOffset = document.querySelector(".track").offsetWidth+150;
         const markerMaxOffset = 1555;
         const markerMovement = (markerMaxOffset-150)/this.timelane;
@@ -86,9 +94,19 @@ class Conductor {
     }
   
 
-    playRecording = (track) => {};
+    playRecording = (track) => {
+        
+        this.addContext();
+
+      
+        
+    };
 
     addTrack = (instrument) => {
+        console.log("track added")
+        //TODO create class tasked with dom Manipulation
+        this.addContext();
+
         let newTrack;
         const index = this.track.length
         const trackContainer = document.querySelector("#trackContainer")
@@ -115,7 +133,7 @@ class Conductor {
         
         if(instrument instanceof Piano){
             img.src = `./images/piano.png`;
-            newTrack = new Track(new Piano());
+            newTrack = new Track(new Piano(),this.AudioContext);
         }
         else if(instrument instanceof Drum){
             newTrack = new Track(new Drum());
@@ -164,13 +182,23 @@ class Conductor {
         
         this.track.push(newTrack);
     };
+
+    addContext = ()=>{
+        if(this.AudioContext === null){
+            this.AudioContext = new AudioContext();
+        }
+    }
     //TODO REMOVE TRACK
+    //TODO Update settings (filters,gain etc...)
 
     playSound = (key) => {
-        
        
-        if (this.recordState == true) {
-            this.track[this.chosenTrack].addNote(key,this.tactCounter);
+       
+        if (this.recordState == true) {            
+            console.log(this.AudioContext.currentTime)
+
+            let note = new Note(this.AudioContext.currentTime,key,1)
+            this.track[this.chosenTrack].addNote(note);
         }
         this.track[this.chosenTrack].playSoundByKey(key);
     };

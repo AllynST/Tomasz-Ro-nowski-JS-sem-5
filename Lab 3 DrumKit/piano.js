@@ -3,19 +3,15 @@ class Piano {
 
     constructor() {}
 
-    async playSound(key) {
+    async playSound(key,startTime) {
         //I have no idea whats going on in here
+        if(startTime == undefined){
+            startTime = 0;
+        }
 
         //Following code and synchronization 
         //took 3 cups of coffee to make(edit 4)
-        
-        const context = new AudioContext();
-
-        const buffer = context.createBuffer(
-            1,
-            context.sampleRate * 1,
-            context.sampleRate
-        );
+        let context = new AudioContext();
 
         const primaryGainControl = context.createGain();
         primaryGainControl.gain.setValueAtTime(1, 0);
@@ -32,7 +28,7 @@ class Piano {
 
                 pianoSource.connect(primaryGainControl);
 
-                pianoSource.start();
+                pianoSource.start(context.currentTime+startTime);
             }
         );
     }

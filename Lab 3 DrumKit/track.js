@@ -1,5 +1,7 @@
 class Track{
+    
 
+    //Tuple with name of the sound and time from the start of the track
     notes = []
     muted = false;
     instrument
@@ -9,21 +11,29 @@ class Track{
         this.instrument = instrument;
     }
 
-    addNote = (note,position) =>{
-        this.notes[position-1] = note
+    addNote = (Note) =>{
+
+        this.notes.push(Note);
+        
     }
     playSoundByKey = (key) =>{
     
         this.instrument.playSound(key)
     }
     playSoundByIndex = (index) =>{     
-        if(!this.muted){
-            this.instrument.playSound(this.notes[index])
-        }        
+        
+        // if(!this.muted){
+        //     this.instrument.playSound(this.notes[index])
+        // }        
         
     }
 
     playTrack = () =>{
+
+        this.notes.forEach(note => {
+             console.log(note)
+            this.instrument.playSound(note.keyCode,note.startTime)
+        });
         
     }
 

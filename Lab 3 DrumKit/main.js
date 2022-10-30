@@ -6,6 +6,8 @@ const pianoKeysBlack = Array.from(document.querySelectorAll(".keyBlack"));
 
 const PianoSoundsContainer = document.querySelector("#PianoSounds")
 
+ 
+//TODO CLEAN UP UNUSED CODE
 
 let temp = 6;
 pianoKeysWhite.forEach((elem) =>{
