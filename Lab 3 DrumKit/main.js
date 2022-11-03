@@ -57,12 +57,16 @@ document.addEventListener("keypress",event =>{
     
     const key = event.key.toLocaleUpperCase();
     
-    recordingHelper(key);
-    if(key !="Q"){
-        conductor.playSound(key)
+ 
+    if(key =="Q"){
+        conductor.recordHandler();   
+       
+    }
+    else if(key == "1"){
+        conductor.metronomeHandler(60);
     }
     else{
-        conductor.recordHandler()   
+         conductor.playSound(key);
     }
     
 })
