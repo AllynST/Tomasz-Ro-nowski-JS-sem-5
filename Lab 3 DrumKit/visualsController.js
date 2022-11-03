@@ -83,5 +83,9 @@ class visualsController{
 
         
 
+        drawNotesOnTrack = (trackNum) =>{
+            //TODO CANVAS KIEDYŚ
+        }
+
     }
 }
