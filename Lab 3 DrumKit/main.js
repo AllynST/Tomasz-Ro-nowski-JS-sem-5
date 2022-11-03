@@ -12,9 +12,14 @@ const PianoSoundsContainer = document.querySelector("#PianoSounds")
 let temp = 6;
 pianoKeysWhite.forEach((elem) =>{
     elem.id = `W${temp}`
-    elem.addEventListener("click",()=>{
+    elem.addEventListener("click",(event)=>{
         
         conductor.playSound(elem.id)
+        event.target.style.opacity ="0.5"
+        setTimeout(()=>{
+            event.target.style.opacity ="1"
+        },100)
+
     });
     const audioTag = document.createElement("audio")
     audioTag.src = `./PianoSounds/W${temp}.wav`;
@@ -27,9 +32,13 @@ pianoKeysWhite.forEach((elem) =>{
 temp = 4
 pianoKeysBlack.forEach((elem) =>{
     elem.id = `B${temp}`
-    elem.addEventListener("click",()=>{
+    elem.addEventListener("click",(event)=>{
         
         conductor.playSound(elem.id)
+        event.target.style.backgroundColor ="#222422"
+        setTimeout(()=>{
+            event.target.style.backgroundColor ="black"
+        },100)
     });
     const audioTag = document.createElement("audio")
     audioTag.src = `./PianoSounds/B${temp}.wav`;
@@ -44,10 +53,7 @@ const conductor = new Conductor();
 
 
 
-document.addEventListener("keypress",event =>{
-    //TODO Shift przedłuża dźwięk
-    const shift = event.shiftKey;
-   
+document.addEventListener("keypress",event =>{ 
     
     const key = event.key.toLocaleUpperCase();
     
@@ -55,19 +61,15 @@ document.addEventListener("keypress",event =>{
     if(key !="Q"){
         conductor.playSound(key)
     }
+    else{
+        conductor.recordHandler()   
+    }
     
 })
 
 const changeTrack=(track) =>{
     conductor.chosenTrack = track;
     console.log(track)
-}
-
-//TODO might be useless
-const recordingHelper = (key) => {   
-    if(key == 'Q'){
-        conductor.recordHandler()       
-    }  
 }
 
 const addTrackBtn = document.querySelector("#addTrackBtn");

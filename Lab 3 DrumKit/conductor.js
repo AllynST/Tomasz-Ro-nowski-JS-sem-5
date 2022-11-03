@@ -1,7 +1,8 @@
 class Conductor {
     track = [];
-
     AudioContext = null;
+
+    visualsController = new visualsController()
     
     //Duration of the track in seconds
     timeLineDuration = 20
@@ -23,7 +24,6 @@ class Conductor {
     
 
     recordHandler = (event) => {
-        console.log("record handler working")
         let interval;
         this.timeLineHandler();
         this.AudioContext= new AudioContext();
@@ -40,21 +40,18 @@ class Conductor {
                     
         this.recordState = !this.recordState;
 
-        console.log("reached")
-        setInterval
-        const test = setInterval(()=>{
-            console.log("Timelineended")
+
+        const test = setInterval(()=>{         
 
               if (this.AudioContext.currentTime > this.timeLineDuration) {
                   this.AudioContext = new AudioContext();
               }
 
             this.track.forEach(t=>{
-                console.log(t)
                 t.playTrack();
             })
 
-        },this.timeLineDuration*1000)
+        },this.timeLineDuration*1001)
     
 
         

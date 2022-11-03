@@ -22,4 +22,6 @@ const load = async () =>{
     }
 }
 
+//TODO This feature will be available later down the development process
+
 //TODO UPDATE LOADING
