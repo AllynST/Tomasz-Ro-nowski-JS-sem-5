@@ -1,40 +1,39 @@
 import {conductor} from "./conductor.js"
 import {Piano} from "./piano.js"
 
+import {selectedInstrument,selectedColor} from './main.js'
+
 
 export function loadAddTrackBtn(){
     
 const addTrackBtn = document.querySelector("#addTrackBtn");
-const dummyInstrumentsContainer = document.querySelector("#dummyInstrumentSelectionDiv");
 
-let dummyState = false;
-addTrackBtn.addEventListener("click", () =>{
-    
-    if(dummyState){
-        dummyInstrumentsContainer.style.height = "200px";
-        addTrackBtn.innerHTML = "-"
-    }
-    else{
-        dummyInstrumentsContainer.style.height = "0px";
-        addTrackBtn.innerHTML = "+"
-    }
-    dummyState = !dummyState
-    
+let createTrackBtn = document.querySelector("#createTrackBtn");
+
+
+createTrackBtn.addEventListener("click",()=>{
+    document.querySelector('#addTrackModalContainer').style.display = "block"
 })
 
-const instrumentButton = Array.from(dummyInstrumentsContainer.children)
 
-instrumentButton.forEach((e)=>{
-    e.addEventListener("click",()=>{
-        if(e.id == "pianoInst"){
-            conductor.addTrack(new Piano())
-            return
-        }
-        if(e.id == "drumInst"){
-            conductor.addTrack(new Drum());
-        }
-        
-    })
+let TrackCounter = 0;
+
+
+addTrackBtn.addEventListener("click", () =>{
+    let addTrackModal = document.querySelector('#addTrackModalContainer')
+    console.log(selectedColor)
+    console.log(selectedInstrument)
+
+    if(selectedInstrument == "Piano"){
+        conductor.addTrack(new Piano(),`Track ${TrackCounter}`,selectedColor)
+    }
+    else if(selectedInstrument == "Drum"){{
+        conductor.addTrack(new Drum(),`Track ${TrackCounter}`,selectedColor)
+    }}
+
+
+    TrackCounter++
+    addTrackModal.style.display = "none"
 })
 
 }

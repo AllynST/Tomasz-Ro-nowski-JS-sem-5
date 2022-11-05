@@ -276,22 +276,20 @@ div#timelane {
     height:6%;
    
 }
+.trackAreaHeader button{
+    font-size: 1.6em;
+    padding:5px;
+    position: absolute;
+    right:0px;
+    top:10px;
+}
 
 .trackAreaHeader h1{
 
     margin: 0px 15px;padding: 0;
     font-size: 3em;
 }
-button#addTrackBtn{
-    position: absolute;
-    top:0px;
-    right: 0px;
-    font-size: 2em;
-   
-  
-   
 
-}
 
 
 
@@ -311,14 +309,126 @@ div.trackRow{
     width:100%;
 }
 div.trackRow .trackLabel{
-    width:10%;
+    position:relative;
+    padding:20px;
+    width:120px;
+    border-radius: 10px;
+    
+    height:120px;
+    background-color: #202C59;
+    
 }
+.trackLabel p{
+    
+    color:white;
+}
+
 .controls{
     padding:0 10px;
     
     height:90%;
     width:5%;
 }
+
+div#addTrackModalContainer{
+    animation: appear 0.3s forwards;
+    z-index: 999;
+    width:100vw;
+    height:100vh;
+    position:absolute;
+    background-color: #202c59a6;
+    
+
+}
+#addTrackModalBox{
+    background-color: white;
+    box-shadow: 0px 0px 100px -28px rgba(247, 247, 247, 0.595);
+    position:absolute;
+    display:flex;
+   
+    flex-wrap: wrap;
+    top:50%;
+    left:50%;
+    padding:2.5%;
+
+    width:1000px;
+    height:700px;
+    transform: translate(-50%, -50%);
+}
+#addTrackModalBox #instrumentsContainer{
+    gap: 15px;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+    height:50%;
+    
+   
+}
+
+
+#instrumentsContainer .instrumentCard{
+    
+    box-shadow: 0px 0px 100px -28px rgba(2, 2, 2, 0.195);
+    height:300px;
+    width:300px;
+}
+.instrumentCard img{
+    width:100%;
+    height:80%;
+}
+.instrumentCard p{
+
+    text-align: center;
+    color:black;
+    font-size: 2em;
+    opacity: 0.5;
+}
+
+
+#addTrackModalBox button{
+    width:150px;
+    height:40px;
+    color:black;
+    margin: 0 auto;
+}
+
+#colorPickerContainer{
+    display:flex;
+    align-items: center;
+    justify-content: space-around;
+    width:100%;
+    height:30%;
+   
+}
+#colorPickerContainer #colorPicker{
+    
+    display:flex;
+    flex-wrap: wrap;
+    gap:10px;
+    justify-content: space-between;
+    align-items: center;
+    width:40%;
+    height:100%;
+ 
+}
+#colorPicker div{
+    border: solid rgba(29, 29, 29, 0.418) 1px;
+    
+    
+    width:60px;
+    height:60px;
+    border-radius: 50%;
+}
+#colorPickerContainer #chosenColorBox{
+    
+    width:25%;
+    height:100%;
+ 
+}
+
+
+
 
 
 

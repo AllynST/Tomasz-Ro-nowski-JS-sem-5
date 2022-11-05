@@ -1,4 +1,4 @@
-class Drum{   
+export class Drum{   
         soundTags = [];
     
         constructor(){

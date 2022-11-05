@@ -53,6 +53,32 @@ document.addEventListener("keypress",event =>{
     }
     
 })
+export let selectedColor = null;
+let addTrackInstruments = Array.from(document.querySelectorAll(".addTrackInstrument"));
+let colorPickerColors = Array.from(document.querySelector("#colorPicker").children)
+export let selectedInstrument = null;
+let colorShowcaseDiv = document.querySelector('#chosenColorBox');
+colorPickerColors.forEach(elem=>{
+    elem.addEventListener("click",e=>{
+        selectedColor = e.target.style.backgroundColor
+        colorShowcaseDiv.style.backgroundColor = selectedColor;
+    })
+})
+
+//TODO change piano image
+//TODO change to more apropriate selection visual
+addTrackInstruments.forEach(elem=>{
+    elem.addEventListener("click",(e)=>{
+        addTrackInstruments.forEach(elem=>{
+            elem.style.backgroundColor = "white"
+        })
+        e.target.style.backgroundColor = "yellow"
+        selectedInstrument = e.target.id;        
+    })
+})
+
+
+
 
 
 

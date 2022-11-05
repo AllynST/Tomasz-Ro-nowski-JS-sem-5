@@ -9,6 +9,46 @@
     </head>
     <body>
 
+        <div id="addTrackModalContainer" style="display:none">
+            <div id="addTrackModalBox">
+                <h1>Track Settings</h1>
+                <div id="instrumentsContainer">
+                    <!-- TODO MAKE INSTRUMENT SELECTION DYNAMIC -->
+                    <div class="instrumentCard">
+                        <img id="Piano" class="addTrackInstrument" src="./images/piano.png" alt="">
+                        <p>Piano</p>
+                    </div>
+                    <div class="instrumentCard">
+                        <img id="Drum" class="addTrackInstrument" src="./images/drum.png" alt="">
+                        <p>Drum</p>    
+                    </div>
+                </div>
+                <div id="colorPickerContainer">
+                    <div id="colorPicker">
+                        <div style="background-color:yellow"></div>
+                        <div style="background-color:red"></div>
+                        <div style="background-color:cyan"></div>
+                        <div style="background-color:green"></div>
+                        <div style="background-color:lime"></div>
+                        <div style="background-color:aquamarine"></div>
+                        <div style="background-color:darkblue"></div>
+                        <div style="background-color:magenta;"></div>
+                        <div style="background-color:slateblue;"></div>
+                        <div style="background-color:white"></div>
+
+                    </div>
+                    <div id="chosenColorBox">
+                    
+                    </div>
+                </div>
+
+
+
+                <button id="addTrackBtn">Add Track</button>
+            </div>
+        
+        </div>
+
 <div id="wrapper">
     <aside id="menu">
         <img src="./images/arrow.png" alt="" id="bulletButton">

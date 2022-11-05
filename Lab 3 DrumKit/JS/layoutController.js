@@ -50,8 +50,7 @@ class LayoutController {
             if (this.readyState == 4) {
                 
                 document.querySelector("#content").innerHTML = this.responseText;
-                console.log(targetPage)
-                console.log(this.responseText)
+            
                 
                 switch(targetPage){
                     case"Home":
@@ -61,7 +60,7 @@ class LayoutController {
                     loadAddTrackBtn();                  
                     break;
                     default:
-                        console.log("Switch not needed")
+                        
                 }
                 
             }
