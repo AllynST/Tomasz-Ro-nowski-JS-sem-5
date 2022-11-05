@@ -1,4 +1,4 @@
-class Piano {
+export class Piano {
     soundTags = [];
 
     constructor() {}

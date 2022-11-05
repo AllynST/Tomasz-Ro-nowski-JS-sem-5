@@ -1,3 +1,7 @@
+import {visualsController} from "./visualsController.js"
+import {Piano} from "./piano.js"
+import {Track} from "./track.js"
+
 class Conductor {
     track = [];
     AudioContext = null;
@@ -203,3 +207,5 @@ class Conductor {
         this.track[this.chosenTrack].playSoundByKey(key);
     };
 }
+
+export const conductor = new Conductor();

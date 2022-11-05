@@ -1,4 +1,12 @@
+:root{
+    --body-bg-color:black;
+    --aside-color:grey;
+    --main-color:white;
+}
+
+
 body {
+    background-color: var(--body-bg-color);
     margin: 0;
     padding: 0;
     display: flex;
@@ -10,27 +18,101 @@ body {
     overflow: hidden;
 }
 
-div#gridWrapper {
-   
+div#wrapper{
+    border-radius: 15px;
     overflow: hidden;
     position: relative;
-    width: 95%;
-    height: 95%;
-    display: grid;
-    grid-template-columns: 10% 80% 10%;
-    grid-template-rows: 80% 20%;
-    grid-template-areas:
-        "trackArea trackArea trackArea"
-        "instruments instruments instruments";
+    width: 98%;
+    height: 98%;
+    display:flex;
+
+  
+}
+main#contentWrapper{
+    width: 100%;
+    height: 100%;
+}
+
+aside#menu{
+    position:relative;
+    display:flex;
+    align-items:center;
+    transition:all 0.5s;
+    width: 15%;
+    height: 100%;
+    background-color: var(--aside-color);
+   
+}
+
+aside#menu #bulletButton{
+    
+
+    transition:all 0.5s; 
+    z-index: 10;
+    width:50px;
+    height:50px;
+    border-radius: 50%;
+    background-color:var(--aside-color);
+    position:absolute;
+    right:-25px;    
+    top:50%;
+}
+
+#menuBubble{
+    transition:all 0.3s;
+    z-index:2;
+    position:absolute;
+    top:480px;
+    left:5%;
+   
+    width:95%;
+    height:60px;
+    background-color:var(--main-color);
+    border-radius: 15px 0px 0px 15px;
+  
+
+}
+
+aside#menu #menuOptions{
+    z-index: 3;
+    overflow: hidden;
+    display:flex;
+    align-items:space-around;
+    flex-wrap: wrap;
+  
+    width:80%;
+    padding:10% 10%;
+    height:500px;
+}
+#menuOptions *{
+    font-size:1.5em;
+    width:100%;
 }
 
 
-div#instruments{
+
+
+section#content{
     position:relative;
 
-    
-    grid-area: instruments;
-    height:99%;
+    background-color:var(--main-color);
+    transition:all 0.5s;
+    padding:2.5%;
+    width:95%;
+    height:95%;
+   
+
+}
+
+/* /////////////////////// */
+
+
+section#instruments{
+    position:absolute;
+    bottom:0px;
+
+  
+    height:20%;
     width:100%;
     overflow:hidden;
     
@@ -177,8 +259,6 @@ div#timeLineIndicator {
 
 div#trackArea {
     overflow-y: scroll;
-    
-    grid-area: trackArea;
 }
 div#timelane {
     background-color: black;
@@ -186,10 +266,38 @@ div#timelane {
     height: 50px;
 }
 
-div#instruments
+.trackAreaHeader{
+    position:relative;
 
-div#trackContainer {
-    
+    border-bottom: 1px solid black;
+    width:90%;
+    margin:0% 5%;
+   
+    height:6%;
+   
+}
+
+.trackAreaHeader h1{
+
+    margin: 0px 15px;padding: 0;
+    font-size: 3em;
+}
+button#addTrackBtn{
+    position: absolute;
+    top:0px;
+    right: 0px;
+    font-size: 2em;
+   
+  
+   
+
+}
+
+
+
+
+
+div#trackContainer {   
     
     width: 100%;
     height: 100%;
@@ -224,16 +332,7 @@ div.track {
     height: 150px;
 }
 
-button#addTrackBtn{
-    margin: 0 auto;
-    display:flex;justify-content: center;align-items: center;
-    padding:20px;
-    font-size:4em;
-    height:100px;
-    width:100px;
-   
 
-}
 div#dummyInstrumentSelectionDiv{
     transition: all 0.3s;
     display:flex;

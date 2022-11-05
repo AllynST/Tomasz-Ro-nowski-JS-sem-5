@@ -1,0 +1,20 @@
+<div class="trackAreaHeader">
+           <h1>Track View</h1>
+           <button id="addTrackBtn">Add Track</button>
+           <div>
+<div id="trackArea">
+           
+            
+
+                <div id="trackContainer">
+                    
+                    
+
+
+                    <div id="dummyInstrumentSelectionDiv">
+                        <img id="pianoInst" src="./images/piano.png" alt="" />
+                        <img id="drumInst" src="./images/drum.png" alt="" />
+                    </div>
+                </div>
+
+</div>

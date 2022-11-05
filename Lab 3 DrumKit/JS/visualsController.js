@@ -1,4 +1,4 @@
-class visualsController{
+export class visualsController{
     //TODO
 
 

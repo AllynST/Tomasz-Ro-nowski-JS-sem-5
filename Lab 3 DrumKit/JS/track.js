@@ -1,4 +1,4 @@
-class Track{
+export class Track{
     
 
     //Tuple with name of the sound and time from the start of the track
