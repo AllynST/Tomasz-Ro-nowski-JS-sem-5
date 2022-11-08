@@ -97,8 +97,8 @@ section#content{
 
     background-color:var(--main-color);
     transition:all 0.5s;
-    padding:2.5%;
-    width:95%;
+    padding:1% 0%;
+    width:98%;
     height:95%;
    
 
@@ -108,8 +108,10 @@ section#content{
 
 
 section#instruments{
+    background-color: yellow;
     position:absolute;
     bottom:0px;
+    left:200px;
 
   
     height:20%;
@@ -259,6 +261,8 @@ div#timeLineIndicator {
 
 div#trackArea {
     overflow-y: scroll;
+    width:200px;
+    background-color: red;
 }
 div#timelane {
     background-color: black;
@@ -271,7 +275,8 @@ div#timelane {
 
     border-bottom: 1px solid black;
     width:90%;
-    margin:0% 5%;
+    margin:2% 15px;
+    margin-bottom: 20px;
    
     height:6%;
    
@@ -304,7 +309,7 @@ div.trackRow{
     animation:appear 1s forwards;
     display:flex;
     align-items: center;
-
+    margin:20px 0px;
   
     width:100%;
 }

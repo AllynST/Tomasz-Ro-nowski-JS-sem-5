@@ -135,8 +135,8 @@ class Conductor {
         elem.className = "trackRow";
         elem.id = index;
 
-        const track = document.createElement("div");
-        track.className = "track";
+        // const track = document.createElement("div");
+        // track.className = "track";
         const label = document.createElement("div");
 
         const trackNameP = document.createElement("p")
@@ -153,29 +153,29 @@ class Conductor {
 
         
 
-        const muteBtn = document.createElement("img");
-        muteBtn.className = "controls";
-        muteBtn.src = "./images/pause.png";
-        muteBtn.id = index;
+        // const muteBtn = document.createElement("img");
+        // muteBtn.className = "controls";
+        // muteBtn.src = "./images/pause.png";
+        // muteBtn.id = index;
 
-        const deleteBtn = document.createElement("img");
-        deleteBtn.className = "controls";
-        deleteBtn.src = "./images/Delete-Transparent.png";
-        deleteBtn.id = index;
+        // const deleteBtn = document.createElement("img");
+        // deleteBtn.className = "controls";
+        // deleteBtn.src = "./images/Delete-Transparent.png";
+        // deleteBtn.id = index;
 
         newTrack = new Track(instrument,color,name);
         console.table(newTrack)
         
 
         elem.appendChild(label);
-        elem.appendChild(track);
-        elem.appendChild(muteBtn);
-        elem.appendChild(deleteBtn);
+        // elem.appendChild(track);
+        // elem.appendChild(muteBtn);
+        // elem.appendChild(deleteBtn);
 
         const labelElem = elem.appendChild(label);
-        elem.appendChild(track);
-        const muteElem = elem.appendChild(muteBtn);
-        const deleteElem = elem.appendChild(deleteBtn);
+        // elem.appendChild(track);
+        // const muteElem = elem.appendChild(muteBtn);
+        // const deleteElem = elem.appendChild(deleteBtn);
 
         trackContainer.append(elem);
         let instrumentsDiv = document.querySelector("#instrumentsInner");
@@ -192,12 +192,12 @@ class Conductor {
                 console.log("something went wrong");
             }
         });
-        muteElem.addEventListener("click", (e) => {
-            console.log(`${e.target.id} has been muted`);
-        });
-        deleteElem.addEventListener("click", (e) => {
-            console.log(e.target.id + " has been deleted");
-        });
+        // muteElem.addEventListener("click", (e) => {
+        //     console.log(`${e.target.id} has been muted`);
+        // });
+        // deleteElem.addEventListener("click", (e) => {
+        //     console.log(e.target.id + " has been deleted");
+        // });
 
         this.track.push(newTrack);
     };
