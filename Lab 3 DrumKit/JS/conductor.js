@@ -1,3 +1,9 @@
+import {visualsController} from "./visualsController.js"
+import {Piano} from "./piano.js"
+import {Drum} from "./drumKit.js"
+import {Track} from "./track.js"
+import {Note} from "./Note.js"
+
 class Conductor {
     track = [];
     AudioContext = null;
@@ -5,7 +11,7 @@ class Conductor {
     visualsController = new visualsController();
 
     //Duration of the track in seconds
-    timeLineDuration = 20;
+    timeLineDuration = 10;
 
     //array of arrays first element contain an instrument
     chosenTrack = 1;
@@ -43,6 +49,7 @@ class Conductor {
 
             this.track.forEach((t) => {
                 t.playTrack();
+                console.log("track played")
             });
         }, this.timeLineDuration * 1001);
     };
@@ -85,26 +92,26 @@ class Conductor {
     };
 
     timeLineHandler = () => {
-        if (this.timeLineState != null) {
-            clearInterval(this.timeLineState);
-            return;
-        }
-        const marker = document.querySelector("#timeLineIndicator");
-        marker.style.display = "block";
-        //TODO FIX ISSUE WITH CHANGING SCREEN WIDTH
-        //const markerMaxOffset = document.querySelector(".track").offsetWidth+150;
-        const markerMaxOffset = 1555;
-        const markerMovement = (markerMaxOffset - 150) / this.timelane;
-        let markerMovementHelper = 150;
-        marker.style.left = `${markerMovementHelper}px`;
+        // if (this.timeLineState != null) {
+        //     clearInterval(this.timeLineState);
+        //     return;
+        // }
+        // const marker = document.querySelector("#timeLineIndicator");
+        // marker.style.display = "block";
+        // //TODO FIX ISSUE WITH CHANGING SCREEN WIDTH
+        // //const markerMaxOffset = document.querySelector(".track").offsetWidth+150;
+        // const markerMaxOffset = 1555;
+        // const markerMovement = (markerMaxOffset - 150) / this.timelane;
+        // let markerMovementHelper = 150;
+        // marker.style.left = `${markerMovementHelper}px`;
 
-        this.timeLineState = setInterval(() => {
-            marker.style.left = `${markerMovementHelper}px`;
-            markerMovementHelper += markerMovement;
-            if (markerMovementHelper > markerMaxOffset) {
-                markerMovementHelper = 150;
-            }
-        }, 20);
+        // this.timeLineState = setInterval(() => {
+        //     marker.style.left = `${markerMovementHelper}px`;
+        //     markerMovementHelper += markerMovement;
+        //     if (markerMovementHelper > markerMaxOffset) {
+        //         markerMovementHelper = 150;
+        //     }
+        // }, 20);
     };
 
     selectTrack = (trackNum) => {
@@ -113,9 +120,10 @@ class Conductor {
 
     playRecording = (track) => {
         this.addContext();
+        
     };
 
-    addTrack = (instrument) => {
+    addTrack = (instrument,name,color) => {
         console.log("track added");
         //TODO create class tasked with dom Manipulation
         this.addContext();
@@ -127,45 +135,54 @@ class Conductor {
         elem.className = "trackRow";
         elem.id = index;
 
-        const track = document.createElement("div");
-        track.className = "track";
-        const img = document.createElement("img");
-        img.id = index;
-        img.className = "trackLabel";
+        // const track = document.createElement("div");
+        // track.className = "track";
+        const label = document.createElement("div");
 
-        const muteBtn = document.createElement("img");
-        muteBtn.className = "controls";
-        muteBtn.src = "./images/pause.png";
-        muteBtn.id = index;
+        const trackNameP = document.createElement("p")
+        trackNameP.innerText = name;
+        const colorNameP = document.createElement("p")
+        colorNameP.innerText = color;
+        colorNameP.style.color = color;
 
-        const deleteBtn = document.createElement("img");
-        deleteBtn.className = "controls";
-        deleteBtn.src = "./images/Delete-Transparent.png";
-        deleteBtn.id = index;
+        label.id = index;
+        label.className = "trackLabel";
+        
+        label.append(trackNameP)
+        label.append(colorNameP)
 
-        if (instrument instanceof Piano) {
-            img.src = `./images/piano.png`;
-            newTrack = new Track(new Piano(), this.AudioContext);
-        } else if (instrument instanceof Drum) {
-            newTrack = new Track(new Drum());
-            img.src = `./images/drum.png`;
-        }
+        
 
-        elem.appendChild(img);
-        elem.appendChild(track);
-        elem.appendChild(muteBtn);
-        elem.appendChild(deleteBtn);
+        // const muteBtn = document.createElement("img");
+        // muteBtn.className = "controls";
+        // muteBtn.src = "./images/pause.png";
+        // muteBtn.id = index;
 
-        const labelElem = elem.appendChild(img);
-        elem.appendChild(track);
-        const muteElem = elem.appendChild(muteBtn);
-        const deleteElem = elem.appendChild(deleteBtn);
+        // const deleteBtn = document.createElement("img");
+        // deleteBtn.className = "controls";
+        // deleteBtn.src = "./images/Delete-Transparent.png";
+        // deleteBtn.id = index;
 
-        trackContainer.prepend(elem);
+        newTrack = new Track(instrument,color,name);
+        console.table(newTrack)
+        
+
+        elem.appendChild(label);
+        // elem.appendChild(track);
+        // elem.appendChild(muteBtn);
+        // elem.appendChild(deleteBtn);
+
+        const labelElem = elem.appendChild(label);
+        // elem.appendChild(track);
+        // const muteElem = elem.appendChild(muteBtn);
+        // const deleteElem = elem.appendChild(deleteBtn);
+
+        trackContainer.append(elem);
         let instrumentsDiv = document.querySelector("#instrumentsInner");
 
         labelElem.addEventListener("click", (e) => {
             this.chosenTrack = e.target.id;
+            console.log(this.chosenTrack)
 
             if (this.track[e.target.id].instrument instanceof Piano) {
                 instrumentsDiv.style.top = "0%";
@@ -175,12 +192,12 @@ class Conductor {
                 console.log("something went wrong");
             }
         });
-        muteElem.addEventListener("click", (e) => {
-            console.log(`${e.target.id} has been muted`);
-        });
-        deleteElem.addEventListener("click", (e) => {
-            console.log(e.target.id + " has been deleted");
-        });
+        // muteElem.addEventListener("click", (e) => {
+        //     console.log(`${e.target.id} has been muted`);
+        // });
+        // deleteElem.addEventListener("click", (e) => {
+        //     console.log(e.target.id + " has been deleted");
+        // });
 
         this.track.push(newTrack);
     };
@@ -203,3 +220,5 @@ class Conductor {
         this.track[this.chosenTrack].playSoundByKey(key);
     };
 }
+
+export const conductor = new Conductor();

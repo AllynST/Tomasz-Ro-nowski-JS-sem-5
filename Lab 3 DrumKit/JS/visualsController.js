@@ -1,10 +1,16 @@
-class visualsController{
+export class visualsController{
     //TODO
 
 
     startTimeLineIndicator = () =>{
 
     }
+
+    enableTrackModal = () =>{
+        let trackModal = document.querySelector("#addTrackModalContainer");
+        trackModal.style.display="block";
+    }
+
 
     addTrack = (index,instrument) =>{
         const trackContainer = document.querySelector("#trackContainer")

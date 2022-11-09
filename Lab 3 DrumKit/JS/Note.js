@@ -1,4 +1,4 @@
-class Note{
+export class Note{
 
     //This class holds only data about played note
     //its purpouse is to cleanup unnecesary variable clutter and to simplify code
