@@ -40,7 +40,7 @@ let promise = new Promise((resolve, reject) => {
         progressBar.value = i;
         i++;
         if (i == 100) {
-            resolve("test");
+            resolve();
         }
     }, 20);
 }).then(() => {
