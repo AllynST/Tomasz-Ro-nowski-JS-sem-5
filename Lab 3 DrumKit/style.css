@@ -108,7 +108,7 @@ section#content{
 
 
 section#instruments{
-    background-color: yellow;
+    background-color: transparent;
     position:absolute;
     bottom:0px;
     left:200px;

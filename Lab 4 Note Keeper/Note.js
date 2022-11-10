@@ -7,6 +7,8 @@ class Note{
     date = Date.now()
     bulletList = []
     notificationState = false;
+    tags = []
+
     
 
 

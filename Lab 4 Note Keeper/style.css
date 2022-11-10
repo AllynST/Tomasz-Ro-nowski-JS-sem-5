@@ -1,0 +1,33 @@
+body{
+    padding: 0;
+    margin: 0;
+    width:100vw;
+    height:100vh;
+
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+main#wrapper{
+
+    width:80%;
+    height:90%;
+    background-color:royalblue;
+}
+
+div#inputCard{
+    border:solid 1px rgba(0, 0, 0, 0.356);
+    background-color: yellow;
+    padding:20px;
+    display:flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap:3px;
+    
+    width:350px;
+}
+div#inputCard *{
+    width: 100%;
+}

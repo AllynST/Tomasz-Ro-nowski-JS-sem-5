@@ -27,7 +27,7 @@ class NoteKeeper{
         
     }
 
-    addNote = (title,content,color,date = null) =>{
+    addNote = (title,content,color,tags,date = null,) =>{
         let createdNote = new Note(title,content,color);
         if(date !=null){
             createdNote.dateHandler(date)
