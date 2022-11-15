@@ -1,10 +1,11 @@
-class Note{
+export default class Note{
     id = Date.now()
     title;
     content
     color
     pin = false;
     date = Date.now()
+    dueDate
     bulletList = []
     notificationState = false;
     tags = []
@@ -13,10 +14,12 @@ class Note{
 
 
 
-    constructor(title,content,color){
+    constructor(title,content,color,tags,dueDate){
         this.title = title;
         this.content = content;
         this.color = color;
+        this.tags = tags.split(" ")
+        this.dueDate = dueDate
     }
 
     pinHandler = () =>{
@@ -44,7 +47,6 @@ class Note{
     notificationStateHandler = ()=>{
         this.notificationState = !this.notificationState;
     }
-
 
 
 

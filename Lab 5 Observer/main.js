@@ -37,6 +37,7 @@ function saveCToSessionStorage(data) {
     sessionStorage.setItem("C", JSON.stringify(storageData));
     return data;
     
+    
 }
 
 function discoverPowerBallNumber(data) {
