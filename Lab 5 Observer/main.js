@@ -1,5 +1,13 @@
 import Observer from './Observer.js'
 import { Subscriber } from "./Subscriber.js";
+// //////////////
+// returnowanie this z funkcji z klasy
+// .test()
+// .test2()
+//chainowanie metod w klasach
+
+//RX JS DLA PRZETWARZANIA DANYCH
+// //////////
 class Logger {
     static log(data) {
         console.log(data);
