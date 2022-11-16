@@ -1,10 +1,14 @@
+import Note from './Note.js'
+import ElementCreator from './ElementCreator.js';
 class NoteKeeper{
+
     notes = []
     notifications = []
 
 
     constructor(){
         this.getLocalStorage();
+        this.renderNotes();
     }
 
     updateNotificatons = ()=>{
@@ -12,7 +16,15 @@ class NoteKeeper{
     }
 
     updateLocalStorage(){
-        localStorage.setItem("notes",this.notes);
+        localStorage.setItem("notes",JSON.stringify(this.notes));
+    }
+
+    renderNotes = () =>{
+
+        const cardsContainer = document.querySelector("#cardWrapper");
+        this.notes.forEach(note=>{
+            cardsContainer.prepend(ElementCreator.createNoteCard(note))
+        })
     }
 
     getLocalStorage = () =>{
@@ -27,12 +39,18 @@ class NoteKeeper{
         
     }
 
-    addNote = (title,content,color,tags,date = null,) =>{
-        let createdNote = new Note(title,content,color);
-        if(date !=null){
-            createdNote.dateHandler(date)
-        }
-        this.notes.push(createdNote)
+    addNote = (title,content,color,tags,dueDate) =>{    
+
+    let newNote = new Note(
+        title,
+        content,
+        color,
+        tags,
+        dueDate
+    );
+    console.log(this.notes)
+        
+        this.notes = [newNote,...this.notes]
 
         this.updateLocalStorage();
     }
@@ -45,9 +63,11 @@ class NoteKeeper{
     }
 
     editNote = (note,id) =>{
-        let note = this.notes.find(note=>note.id === id)
-        note.editNote(note.title,note.content,note.color)
+        let currentNote = this.notes.find(note=>note.id === id)
+        currentNote.editNote(note.title,note.content,note.color)
 
         this.updateLocalStorage();
     }
 }
+
+export default new NoteKeeper();

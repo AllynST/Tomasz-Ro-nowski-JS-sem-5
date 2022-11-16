@@ -3,6 +3,7 @@ body{
     margin: 0;
     width:100vw;
     height:100vh;
+    font-size:12px;
 
     display:flex;
     justify-content: center;
@@ -12,9 +13,28 @@ body{
 
 main#wrapper{
 
+    display:grid;
+    grid-template-columns: 20% 80% ;
+    grid-template-rows:5% 15% 80%;
+
+    grid-template-areas:
+    "searchBar searchbar",
+    "aside createNote"
+    "aside content"
+    ;
+
     width:80%;
     height:90%;
     background-color:royalblue;
+}
+
+div#cardWrapper{
+    grid-area:content;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap:10px;
+    align-items: center;
 }
 
 div#inputCard{
@@ -30,4 +50,19 @@ div#inputCard{
 }
 div#inputCard *{
     width: 100%;
+}
+
+div.noteCard{
+    padding:20px;
+    width:350px;
+    border-radius: 15px ;
+    
+    
+}
+.noteCard p.title{
+    font-weight: bold;
+    font-size:1.5em;
+}
+.noteCard p.date{
+    opacity: 0.6;
 }
