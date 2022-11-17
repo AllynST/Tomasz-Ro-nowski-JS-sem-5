@@ -44,19 +44,19 @@ export default class Ball{
 
     movementConstrains = ()=>{
         if(this.currPosX >window.innerWidth){
-            this.currPosX = window.innerWidth
+            this.currPosX = window.innerWidth- this.radius/2
         }
         if(this.currPosX < 0){
-            this.currPosX = 0;
+            this.currPosX = 0+this.radius
         }
 
         if(this.currPosY<0){
-            this.currPosY = 0
+            this.currPosY = 0+this.radius
         }
         
 
         if(this.currPosY > window.innerHeight){
-            this.currPosY = window.innerHeight
+            this.currPosY = window.innerHeight-this.radius
         }
     }
 
