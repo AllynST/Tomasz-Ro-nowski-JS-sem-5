@@ -5,7 +5,7 @@ import Plane from './Plane.js'
 const orientationHandler = (e) =>{
 
   const alpha = (e.alpha-180)*-1;
-  const beta = e.beta*-1;
+  const beta = (e.beta)*-1;
   const gamma = e.gamma;
   console.log(alpha)
     
