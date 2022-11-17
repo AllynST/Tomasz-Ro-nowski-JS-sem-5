@@ -1,15 +1,11 @@
 body{
     padding: 0;
     margin: 0;
-    width:100vw;
+    width:100%;
     height:100vh;
     font-size:12px;
 
-    display:flex;
-    justify-content: center;
-    align-items: center;
 }
-
 
 main#wrapper{
 
@@ -18,14 +14,28 @@ main#wrapper{
     grid-template-rows:5% 15% 80%;
 
     grid-template-areas:
-    "searchBar searchbar",
+    "searchBar searchbar"
     "aside createNote"
     "aside content"
     ;
 
-    width:80%;
-    height:90%;
+    width:100%;
+    height:100%;
     background-color:royalblue;
+}
+
+div#searchBar{
+    background-color:aqua;
+    width:100%;
+    height:100%;
+    grid-area:searchBar;
+}
+
+nav#aside{
+    background-color: blueviolet;
+    grid-area:aside;
+    width:100%;
+    height:100%;
 }
 
 div#cardWrapper{
@@ -62,6 +72,13 @@ div.noteCard{
 .noteCard p.title{
     font-weight: bold;
     font-size:1.5em;
+}
+.noteCard p.content{
+    width: 100%;
+    text-align: justify;
+    
+    height:auto;
+    overflow-wrap: break-word;
 }
 .noteCard p.date{
     opacity: 0.6;

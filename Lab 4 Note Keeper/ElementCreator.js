@@ -6,6 +6,8 @@ export default class ElementCreator{
         let colorNumsSum = colorNums.map(x=>parseInt(x,16)).reduce((partialSum, a) => partialSum + a, 0);
         let fontColor = colorNumsSum <45 ? "white" : "black"
 
+
+
         const title = this.createCustomElement("p",{
             className:"title",
             innerHTML:note.title
@@ -31,8 +33,8 @@ export default class ElementCreator{
 
         const tags = this.createCustomElement("p",{
             className:"tags",
-            innerHTML:note.tags.toString()
-       
+            innerHTML:note.tags.toString(),
+      
 
         })
 
@@ -42,8 +44,8 @@ export default class ElementCreator{
             style:
             `background-color:${note.color};
             color:${fontColor}            
-            `
-            
+            ` ,
+            children:[title,content,dueDate]      
             
         })
         
@@ -59,24 +61,21 @@ export default class ElementCreator{
     }
 
     static createCustomElement = (element,props)=>{
-        if(typeof(element) === "string"){
-            
-            element = document.createElement(element)
-        }
+        if(typeof(element) === "string")  element = document.createElement(element)        
 
         for(const [key,value] of Object.entries(props)){
             if(value instanceof Array){
-                element[key] = [...value];
-            }
-            else{
-                element[key] = value;
-            }
+                if(key == "children"){
+                    value.forEach((prop)=>{
+                        element.append(prop)
+                    })
+                }               
+                return element
+            }            
+            element[key] = value;          
             
-        }
-      
-        return element
-        
-      
+        }      
+        return element      
     }   
     
 
