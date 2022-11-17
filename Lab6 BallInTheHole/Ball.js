@@ -36,6 +36,8 @@ export default class Ball{
 
 
     accelerationHandler(X,Y,Z){
+        console.log(`acceleration X : ${this.accelerationX}`)
+        console.log(`acceleration Y : ${this.accelerationY}`)
         this.accelerationX = X*0.04;
         this.accelerationY = Y*0.1;
     }
