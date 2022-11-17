@@ -2,12 +2,6 @@ import Ball from './Ball.js'
 import Plane from './Plane.js'
 
 
-const plane = new Plane()
-
-window.alpha
-
-const ball = new Ball();
-
 const orientationHandler = (e) =>{
 
   const alpha = (e.alpha-180)*-1;
@@ -21,6 +15,14 @@ const orientationHandler = (e) =>{
     )
     
 }
+
+
+
+const plane = new Plane();
+ 
+const ball = new Ball();
+
+
 
 
 const animate = ()=>{

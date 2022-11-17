@@ -1,11 +1,19 @@
 export default class Plane{
 
+    startingPos = {
+        X:0,
+        Y:0
+    }
+
 
     context
     width
     height
 
-    constructor(){
+    constructor(startX,startY){
+
+        this.startingPos.X = startX;
+        this.startingPos.Y = startY;
         this.renderPlane();
     }
 
