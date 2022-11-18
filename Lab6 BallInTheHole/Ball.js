@@ -1,6 +1,8 @@
+import Helpers from "./Helpers.js";
+
 export default class Ball{
 
-    radius = 25
+    radius = 20
 
     accelerationX = 0;
     accelerationY = 0;
@@ -9,23 +11,21 @@ export default class Ball{
 
     //TODO deacceleration
 
-    currPosX  = 50
-    currPosY = 50
+    currPosX  = 140
+    currPosY = 140
 
-    constructor(X,Y){
-
-        console.log("ball created")
+    constructor(){
+        // this.currPosX = Helpers.getRandomInt(0+this.radius,window.innerWidth)
+        // this.currPosY = Helpers.getRandomInt(0+this.radius,window.innerHeight)
+       
     
     }
-    renderCurrentPos(context){
+    render(context){
+       
        
         this.currPosX += this.accelerationX
         this.currPosY += this.accelerationY
-        
-        
-         context.fillStyle = " #f5f5f5";
-         context.fillRect(0, 0, window.innerWidth, window.innerHeight);
-
+     
         context.beginPath();
         context.arc(this.currPosX, this.currPosY, this.radius,0, 4 * Math.PI);
         context.stroke();
@@ -35,27 +35,27 @@ export default class Ball{
     }
 
 
-    accelerationHandler(X,Y,Z){
-        console.log(`acceleration X : ${this.accelerationX}`)
-        console.log(`acceleration Y : ${this.accelerationY}`)
-        this.accelerationX = X*0.1;
-        this.accelerationY = Y*0.1;
+    accelerationHandler(X,Y,planeTilt){
+        
+        
+        this.accelerationX = (X+planeTilt.X)*0.1;
+        this.accelerationY = (Y+planeTilt.Y)*0.1;
     }
 
     movementConstrains = ()=>{
-        if(this.currPosX >window.innerWidth){
-            this.currPosX = window.innerWidth- this.radius/2
+        if(this.currPosX + this.radius >window.innerWidth){
+            this.currPosX = window.innerWidth - this.radius
         }
-        if(this.currPosX < 0){
-            this.currPosX = 0+this.radius
+        if(this.currPosX -this.radius < 0){
+            this.currPosX = 0 + this.radius
         }
 
-        if(this.currPosY<0){
+        if(this.currPosY - this.radius < 0){
             this.currPosY = 0+this.radius
         }
         
 
-        if(this.currPosY > window.innerHeight){
+        if(this.currPosY + this.radius > window.innerHeight){
             this.currPosY = window.innerHeight-this.radius
         }
     }
