@@ -8,7 +8,10 @@ export default class Plane{
     
     render(context){
 
-        context.fillStyle = " #FFFFFF";
+        context.fillStyle = " #00FFFF";
         context.fillRect(0, 0, window.innerWidth, window.innerHeight);
+
+
+      
     }
 }

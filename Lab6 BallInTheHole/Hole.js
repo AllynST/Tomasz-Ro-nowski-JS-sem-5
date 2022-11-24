@@ -20,6 +20,8 @@ export default class Hole{
      
         context.beginPath();
         context.arc(this.posX, this.posY, this.radius,0, 4 * Math.PI);
+        context.fillStyle = "black";
+            context.fill();
         context.stroke();
       
     }

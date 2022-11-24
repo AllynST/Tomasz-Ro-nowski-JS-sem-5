@@ -75,10 +75,9 @@ performance.mark("end");
 let timeElapsed = performance.measure("result", "start", "end").duration;
 
 
-setTimeout(()=>{
-    console.log("Time elapsed: "+timeElapsed);
-    console.log("Sum of the arr: "+test)
-},5000)
+//TODO Find out why sum of the array is not returned
+console.log("Time elapsed: "+timeElapsed);
+console.log("Sum of the arr: "+test)
 
 
 

@@ -22,8 +22,8 @@ export default class GameMaster{
 
         let canvas = document.createElement("canvas");
        
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight
+        canvas.width = window.innerWidth*0.9;
+        canvas.height = window.innerHeight*0.9
 
         document.querySelector("#root").append(canvas);
         this.context = canvas.getContext("2d");
@@ -59,7 +59,7 @@ export default class GameMaster{
             const xDif = hole.posX - this.ball.currPosX
             const yDif = hole.posY - this.ball.currPosY
 
-            const distance = Math.sqrt(Math.pow(xDif,2)+Math.pow(yDif,2)) -this.ball.radius - hole.radius
+            const distance = Math.sqrt(Math.pow(xDif,2)+Math.pow(yDif,2)) +this.ball.radius - hole.radius
             
             if(distance < 0){
                 const index = this.holes.indexOf(hole)
@@ -71,8 +71,9 @@ export default class GameMaster{
 
     renderFrame = () =>{
          this.plane.render(this.context)        
-         this.ball.render(this.context)
+         
          this.holes.forEach(e =>{e.render(this.context)})
+         this.ball.render(this.context,this.planeTiltEffect)
          this.checkForCollisions()
         
         requestAnimationFrame(this.renderFrame)
