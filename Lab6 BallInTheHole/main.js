@@ -12,7 +12,6 @@ game.setBallMovement(0,0)
 
 const orientationHandler = (e) =>{
 
-  const alpha = (e.alpha-180)*-1;
   const beta = (e.beta);
   const gamma = e.gamma;
   
