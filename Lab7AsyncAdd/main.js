@@ -11,27 +11,65 @@ const asyncAdd = async (a, b) => {
 
 class PerfMon {
     static measure = async (callback,...args) => {
-        const t0 = performance.now();
-        await callback(args);
-        const t1 = performance.now();
+        
 
-        return t1 - t0;
+        performance.mark("start");
+        await callback(args);
+        performance.mark("end")
+
+
+        let timeElapsed =performance.measure("result","start","end").duration
+        console.log(`Time elapsed in ms: ${timeElapsed}`);
+
+        return timeElapsed;
     };
 }
 const sumOfArgs = async (nums) => {
-   
+    let arr = []
 
     if (nums.length == 1) {
+        console.log(nums[0])
         return nums[0];
     }
 
-    let sum = await asyncAdd(...nums.splice(0, 2));
+    if(nums.length%2 != 0 && nums.length !=1){
+        const test = nums.splice(nums.length - 1, 1);
+        arr.push(...test)
+    }
 
-    const arr = [sum, ...nums];
-    return sumOfArgs(arr);
+    let state = []; 
+
+    for (let i = 0; i <= nums.length -2; i= i+2) {        
+        console.log(`pair: ${nums[i]} + ${nums[i+1]}`)
+        state.push(
+            new Promise(async (resolve, reject) => {
+                const branchResult = await asyncAdd(
+                    nums[i],
+                    nums[i+1]
+                );
+                resolve(branchResult);
+            })
+        );
+    }
+    Promise.all(state).then((data) => {
+        arr.unshift(...data)      
+        console.log(arr)
+       return sumOfArgs(arr);
+    });
+
 };
 
+
+let testArr = []
+let quantity = 1000;
+
+for(let i =1;i<quantity;i++){
+    testArr.push(i)
+}
+
+
+
 console.log(
-    await PerfMon.measure(sumOfArgs,1,2,3,4,5,6,7,8,9,10)
+    await PerfMon.measure(sumOfArgs,...testArr)
 );
 
