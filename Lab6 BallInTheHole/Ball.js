@@ -6,9 +6,17 @@ export default class Ball{
 
     traces = []
 
+    sensorAcceleration = {
+        x:0,
+        y:0
+    }
 
-    accelerationX = 0;
-    accelerationY = 0;
+    accelerationModifier = {
+        x:0,
+        y:0
+    }
+
+    maxVelocity = 10;
 
    
 
@@ -17,28 +25,71 @@ export default class Ball{
 
     //TODO deacceleration
 
+    //TODO delete temp values
     currPosX  = 140
     currPosY = 140
 
     constructor(){
-        // this.currPosX = Helpers.getRandomInt(0+this.radius,window.innerWidth)
-        // this.currPosY = Helpers.getRandomInt(0+this.radius,window.innerHeight)
+        // this.currPosX = Helpers.getRandomInt(0+this.radius,window.innerWidth*0.9)
+        // this.currPosY = Helpers.getRandomInt(0+this.radius,window.innerHeight*0.9)
+       
        
     
     }
+
+    deacceleration = () =>{
+
+        if(this.accelerationModifier.x > this.maxVelocity){
+            this.accelerationModifier.x = this.maxVelocity
+        }
+        if(this.accelerationModifier.x < -this.maxVelocity){
+            this.accelerationModifier.x = -this.maxVelocity
+        }
+
+        if(this.accelerationModifier.y > this.maxVelocity){
+            this.accelerationModifier.y = this.maxVelocity
+        }
+        if(this.accelerationModifier.y < -this.maxVelocity){
+            this.accelerationModifier.y = -this.maxVelocity
+        }
+        
+
+
+            if(this.accelerationModifier.y <0.01 && this.accelerationModifier.y >-0.01){
+                this.accelerationModifier.y = 0; 
+            }
+            this.accelerationModifier.y += this.accelerationModifier.y >0 ? -0.07 : 0.07;
+
+            if(this.accelerationModifier.x <0.01 && this.accelerationModifier.x >-0.01){
+                this.accelerationModifier.x = 0; 
+            }
+            this.accelerationModifier.x += this.accelerationModifier.x >0 ? -0.07 : 0.07;
+            
+
+        // console.log(this.accelerationModifier.y)
+
+    }
+
     render(context,planeTilt){
 
-        this.trace(this.currPosX,this.currPosY,context)
+        this.trace(this.currPosX,this.currPosY,context);
        
-       
-        this.currPosX += this.accelerationX +planeTilt.X
-        this.currPosY += this.accelerationY +planeTilt.Y
+        // this.currPosX += this.sensorAcceleration.x +planeTilt.X + this.accelerationModifier.x
+        // this.currPosY += this.sensorAcceleration.y +planeTilt.Y +this.accelerationModifier.y
+
+        this.currPosX += this.sensorAcceleration.x + this.accelerationModifier.x
+        this.currPosY += this.sensorAcceleration.y +this.accelerationModifier.y
      
         context.beginPath();
         context.arc(this.currPosX, this.currPosY, this.radius,0, 4 * Math.PI);
         
         this.movementConstrains();
-        return this
+        this.deacceleration();
+
+
+        // console.log(`BallX: ${this.currPosX} BallY: ${this.currPosY}`)
+        // console.log(`Acceleration ${this.accelerationModifier.y}`)
+ 
         
     }
 
@@ -51,14 +102,10 @@ export default class Ball{
         this.traces.forEach((trace,index)=>{
             context.beginPath();
             
-            //Imitacja mężczyzny idzie tam gdzie go "zawodnik" poprowadzi
-            // context.arc(trace.x, trace.y, (this.radius+index)/index,0, 4 * Math.PI);
-            // context.fillStyle = "red";
-            // context.fill();
             context.globalAlpha = index/5;
 
             context.arc(trace.x, trace.y, this.radius-(5-index)*2,0, 4 * Math.PI);
-            context.fillStyle = "red";
+            context.fillStyle = "yellow";
             context.fill();
             
         })
@@ -70,26 +117,44 @@ export default class Ball{
 
     accelerationHandler(X,Y){
         
-        
-        this.accelerationX = X*0.1;
-        this.accelerationY = Y*0.1;
+        this.sensorAcceleration = {
+            x: X*0.1,
+            y: Y*0.1
+        }
+       
     }
+    //TODO acceleration BUG if sensor speed is lower then sensor acceleration
 
     movementConstrains = ()=>{
-        if(this.currPosX + this.radius >window.innerWidth){
-            this.currPosX = window.innerWidth*0.9 - this.radius
-        }
-        if(this.currPosX -this.radius < 0){
-            this.currPosX = 0 + this.radius
-        }
 
+        //Bounce right
+        if(this.currPosX + this.radius >window.innerWidth*0.9){
+            this.currPosX = window.innerWidth*0.9 -this.radius -1
+           
+            this.accelerationModifier.x = Math.abs(this.accelerationModifier.x + this.sensorAcceleration.x) *-1.5
+            
+            
+        }
+        //Bounce left
+        if(this.currPosX -this.radius < 0){
+            this.currPosX = 1+this.radius;
+            this.accelerationModifier.x =  Math.abs(this.accelerationModifier.x + this.sensorAcceleration.x) *1.5
+        }
+        //Bounce top
         if(this.currPosY - this.radius < 0){
-            this.currPosY = 0+this.radius
+         
+            this.currPosY = 1+this.radius;
+            this.accelerationModifier.y = Math.abs(this.accelerationModifier.y + this.sensorAcceleration.y) *1.5
+            
         }
         
+        //Bounce bottom
+        if(this.currPosY + this.radius > window.innerHeight*0.9){
 
-        if(this.currPosY + this.radius > window.innerHeight){
-            this.currPosY = window.innerHeight*0.9-this.radius
+            this.currPosY = window.innerHeight*0.9 -this.radius -1
+            this.accelerationModifier.y = Math.abs(this.accelerationModifier.y + this.sensorAcceleration.y) *-1.5
+           
+       
         }
     }
 

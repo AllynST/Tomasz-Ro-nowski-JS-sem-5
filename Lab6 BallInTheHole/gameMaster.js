@@ -1,6 +1,7 @@
 import Ball from "./Ball.js"
 import Hole from "./Hole.js"
 import Plane from "./Plane.js"
+import BlackHole from "./BlackHole.js"
 
 export default class GameMaster{
 
@@ -10,6 +11,7 @@ export default class GameMaster{
     plane = new Plane()
     ball = new Ball()
     holes = []
+    blackHoles = []
 
     planeTiltEffect = {
         X:0,
@@ -18,7 +20,7 @@ export default class GameMaster{
 
 
 
-    constructor(holeCount){
+    constructor(holeCount,blackHoleCount){
 
         let canvas = document.createElement("canvas");
        
@@ -27,19 +29,22 @@ export default class GameMaster{
 
         document.querySelector("#root").append(canvas);
         this.context = canvas.getContext("2d");
-        console.log(this.context)
+        
 
-        this.startGame(holeCount);
+        this.startGame(holeCount,blackHoleCount);
         this.setBallMovement(0,0);
         
         
     }
 
-    startGame = (holeCount)=>{       
+    startGame = (holeCount,blackHoleCount)=>{       
        
 
         for(let i  = 0 ;i<holeCount;i++){
             this.holes.push(new Hole())
+        }
+        for(let i  = 0 ;i<blackHoleCount;i++){
+            this.blackHoles.push(new BlackHole())
         }
         this.renderFrame(this.context)
         
@@ -73,6 +78,7 @@ export default class GameMaster{
          this.plane.render(this.context)        
          
          this.holes.forEach(e =>{e.render(this.context)})
+         this.blackHoles.forEach(e =>{e.render(this.context,this.ball)})
          this.ball.render(this.context,this.planeTiltEffect)
          this.checkForCollisions()
         
