@@ -3,7 +3,7 @@ import GameMaster from './gameMaster.js';
 import Plane from './Plane.js'
 
 
-const game = new GameMaster(5,3);
+const game = new GameMaster(5,0);
 
 game.setBallMovement(0,0)
 
@@ -52,7 +52,7 @@ let canvasRef = document.querySelector("canvas")
 // },5000)
 
 //TODO generating arrows to indicate plane tilt (visual)
-
+//TODO popup wiggle the phone to get out out of the black hole
 
 
 

@@ -11,7 +11,7 @@ export default class Plane{
     render(context){
         let background = new Image();
         background.src = './images/background.jpg'
-        background.width = "1000px"
+        background.width = window.innerWidth;
         context.drawImage(background,0,0,window.innerWidth,window.innerHeight)
        
 

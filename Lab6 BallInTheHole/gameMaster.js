@@ -24,8 +24,8 @@ export default class GameMaster{
 
         let canvas = document.createElement("canvas");
        
-        canvas.width = window.innerWidth*0.9;
-        canvas.height = window.innerHeight*0.9
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
         document.querySelector("#root").append(canvas);
         this.context = canvas.getContext("2d");
@@ -82,7 +82,10 @@ export default class GameMaster{
          this.ball.render(this.context,this.planeTiltEffect)
          this.checkForCollisions()
         
-        requestAnimationFrame(this.renderFrame)
+        setTimeout(()=>{
+            requestAnimationFrame(this.renderFrame)
+        },300)
+        
 
     }
 

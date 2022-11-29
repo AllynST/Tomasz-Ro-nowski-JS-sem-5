@@ -8,7 +8,7 @@ export default class BlackHole{
     ///////////GRAVITY TEST SETTINGS////////////////
     //lesser the value the easier it is to get out
 
-    maxAttractionValue = 0.3; // <1.5
+    maxAttractionValue = 0.7; // <1.5
 
     ////////////////////////////////////////////////
     radius = 15;
@@ -34,7 +34,7 @@ export default class BlackHole{
         context.beginPath();
         context.arc(this.posX, this.posY, this.radius,0, 4 * Math.PI);
         context.fillStyle = "blue";
-            context.fill();
+        context.fill();
         context.stroke();
 
         this.checkForEffectRadius(ball)
