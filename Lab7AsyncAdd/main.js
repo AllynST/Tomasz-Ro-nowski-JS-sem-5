@@ -55,7 +55,7 @@ const sumOfArgs = async (nums) => {
     //         })
     //     );
     // }
-    Promise.all(state).then(async (data) => {
+   await  Promise.all(state).then(async (data) => {
         arr.unshift(...data);                      
         return await sumOfArgs(arr);
     });

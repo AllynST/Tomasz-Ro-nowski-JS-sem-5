@@ -2,9 +2,11 @@ import Helpers from "./Helpers.js";
 
 export default class Ball{
 
-    radius = 20
+    radius = 100
 
     traces = []
+
+    rotation = 0;
 
     sensorAcceleration = {
         x:0,
@@ -72,7 +74,7 @@ export default class Ball{
 
     render(context,planeTilt){
 
-        this.trace(this.currPosX,this.currPosY,context);
+        //this.trace(this.currPosX,this.currPosY,context);
        
         // this.currPosX += this.sensorAcceleration.x +planeTilt.X + this.accelerationModifier.x
         // this.currPosY += this.sensorAcceleration.y +planeTilt.Y +this.accelerationModifier.y
@@ -80,8 +82,24 @@ export default class Ball{
         this.currPosX += this.sensorAcceleration.x + this.accelerationModifier.x
         this.currPosY += this.sensorAcceleration.y +this.accelerationModifier.y
      
+        // context.beginPath();
+        // context.arc(this.currPosX, this.currPosY, this.radius,0, 4 * Math.PI);
+
+        //TODO delete hitbox marker
         context.beginPath();
-        context.arc(this.currPosX, this.currPosY, this.radius,0, 4 * Math.PI);
+        context.rect(this.currPosX- this.radius, this.currPosY-this.radius, this.radius, this.radius);
+        context.stroke();
+
+        let shipImg = new Image();
+        shipImg.src = "./images/ship.png";
+        shipImg.width = this.radius;
+        context.drawImage(
+            shipImg,
+            this.currPosX - this.radius,
+            this.currPosY - this.radius,
+            this.radius,
+            this.radius
+        );
         
         this.movementConstrains();
         this.deacceleration();
@@ -115,6 +133,48 @@ export default class Ball{
         
     }
 
+    tiltToDirection = () =>{
+/*
+            1|2
+            ----
+            3/4
+*/
+            if(this.sensorAcceleration.x > 0 && 
+                this.sensorAcceleration.y <0){
+                //first quarter
+            }
+
+            if (
+                this.sensorAcceleration.x > 0 &&
+                this.sensorAcceleration.y > 0
+            ) {
+                //second quarter
+            }
+            if (
+                this.sensorAcceleration.x < 0 &&
+                this.sensorAcceleration.y < 0
+            ) {
+
+            }
+                //FOURTH quarter
+            
+            if (
+                this.sensorAcceleration.x > 0 &&
+                this.sensorAcceleration.y < 0
+            ) {
+                
+            }
+                //first quarter
+            
+            const  sum = this.sensorAcceleration.x;
+            this.sensorAcceleration.y;
+
+
+
+            accelerationSumX
+            
+    }
+
     accelerationHandler(X,Y){
         
         this.sensorAcceleration = {
@@ -123,7 +183,7 @@ export default class Ball{
         }
        
     }
-    //TODO acceleration BUG if sensor speed is lower then sensor acceleration
+    //TODO acceleration BUG if sensor speed is lower then sensor acceleration(fixed)
 
     movementConstrains = ()=>{
 
