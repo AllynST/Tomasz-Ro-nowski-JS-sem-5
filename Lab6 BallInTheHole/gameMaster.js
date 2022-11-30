@@ -82,10 +82,11 @@ export default class GameMaster{
          this.ball.render(this.context,this.planeTiltEffect)
          this.checkForCollisions()
         
-        setTimeout(()=>{
-            requestAnimationFrame(this.renderFrame)
-        },300)
+        // setTimeout(()=>{
+        //     requestAnimationFrame(this.renderFrame)
+        // },300)
         
+        requestAnimationFrame(this.renderFrame);
 
     }
 

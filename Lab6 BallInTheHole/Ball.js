@@ -170,9 +170,8 @@ export default class Ball {
             console.log("second quarter");
             const temp = Math.sqrt(Math.pow(this.sensorAcceleration.x,2) + Math.pow(this.sensorAcceleration.y,2))
 
-            rotationValue = 360 - Math.abs(Math.sin(this.sensorAcceleration.x / temp)* 180 /Math.PI);
-          
-            
+            rotationValue = 270 + Math.abs(Math.sin(this.sensorAcceleration.x / temp)* 180 /Math.PI);
+                      
         }
         //third quarter
         else if (this.sensorAcceleration.x <= 0 && this.sensorAcceleration.y >= 0) {
@@ -188,7 +187,7 @@ export default class Ball {
             console.log("fourth quarter");
             const temp = Math.sqrt(Math.pow(this.sensorAcceleration.x,2) + Math.pow(this.sensorAcceleration.y,2))
             console.log("temp: "+temp)
-            rotationValue = 180 - Math.abs(Math.sin(this.sensorAcceleration.y / temp)* 180 /Math.PI);
+            rotationValue = 90+ Math.abs(Math.sin(this.sensorAcceleration.y / temp)* 180 /Math.PI);
             
             
         }
