@@ -4,7 +4,7 @@ export default class Hole{
 
     posX
     posY
-    radius = 30;
+    radius = 40;
 
     constructor(){
          this.posX = Helpers.getRandomInt(0+this.radius,window.innerWidth)
@@ -18,11 +18,16 @@ export default class Hole{
         
         
      
-        context.beginPath();
-        context.arc(this.posX, this.posY, this.radius,0, 4 * Math.PI);
-        context.fillStyle = "black";
-            context.fill();
-        context.stroke();
+        let chickenImg = new Image();
+        chickenImg.src = "./images/chicken.webp";
+
+        context.drawImage(
+            chickenImg,
+            this.posX,
+            this.posY,
+            this.radius,
+            this.radius
+        );
       
     }
 

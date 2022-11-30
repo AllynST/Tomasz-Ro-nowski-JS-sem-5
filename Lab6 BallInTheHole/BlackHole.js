@@ -11,7 +11,7 @@ export default class BlackHole{
     maxAttractionValue = 0.7; // <1.5
 
     ////////////////////////////////////////////////
-    radius = 15;
+    radius = 40;
     effectRadius = 200;
 
     constructor(){       
@@ -31,11 +31,17 @@ export default class BlackHole{
         //     context.fill();
         // context.stroke();
      
-        context.beginPath();
-        context.arc(this.posX, this.posY, this.radius,0, 4 * Math.PI);
-        context.fillStyle = "blue";
-        context.fill();
-        context.stroke();
+         let eggImg = new Image();
+         eggImg.src = "./images/egg.webp";
+
+         context.drawImage(
+             eggImg,
+             this.posX,
+             this.posY,
+             this.radius,
+             this.radius
+         );
+      
 
         this.checkForEffectRadius(ball)
     }

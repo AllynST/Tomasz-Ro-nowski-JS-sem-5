@@ -135,7 +135,7 @@ export default class Ball {
         this.traces.forEach((trace, index) => {
             context.beginPath();
 
-            context.globalAlpha = index / 5;
+            context.globalAlpha = index / 20;
 
             context.arc(
                 trace.x-this.radius/2,

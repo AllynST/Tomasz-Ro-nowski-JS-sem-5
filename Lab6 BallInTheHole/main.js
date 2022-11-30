@@ -3,7 +3,7 @@ import GameMaster from './gameMaster.js';
 import Plane from './Plane.js'
 
 
-const game = new GameMaster(5,0);
+const game = new GameMaster(5,2);
 
 game.setBallMovement(0,0)
 
