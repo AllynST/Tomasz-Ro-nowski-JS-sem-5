@@ -1,4 +1,4 @@
-import Particle from './particle.js'
+import Particle from "./particle.js";
 
 let canvas = document.createElement("canvas");
 
@@ -7,62 +7,95 @@ canvas.height = window.innerHeight;
 
 document.querySelector("#root").append(canvas);
 
-let n = 50 // number of particles
-let particles = []
+let n = 100; // number of particles
+let particles = [];
 let ctx = canvas.getContext("2d");
 
-for(let i = 0 ;i<n;i++){
-    particles.push(new Particle())
+for (let i = 0; i < n; i++) {
+    particles.push(new Particle());
 }
+
+let mouseX;
+let mouseY;
+let eatSpeed= 0.1;
 
 animate();
 
-function animate(){
+function animate() {
     ctx.beginPath();
     ctx.fillStyle = "white";
-    
+
     ctx.rect(0, 0, window.innerWidth, window.innerHeight);
     ctx.fill();
     ctx.stroke();
 
-    particles.forEach((particle)=>{
+    particles.forEach((particle) => {
         particle.render(ctx);
 
-        particles.forEach(elem =>{
-            if(particle !=elem){
-
+        particles.forEach((elem) => {
+            if (particle != elem) {
                 const xDif = elem.position.x - particle.position.x;
                 const yDif = elem.position.y - particle.position.y;
 
-                const distance = Math.sqrt(Math.pow(xDif, 2) + Math.pow(yDif, 2))                  
+                const distance = Math.sqrt(
+                    Math.pow(xDif, 2) + Math.pow(yDif, 2)
+                );
 
-                if (distance < 300) {
-
-                    ctx.globalAlpha = (300-distance)/300
+                if (distance < 200) {
+                    if(elem.radius >particle.radius){
+                        elem.radius +=eatSpeed;
+                        particle.radius-=eatSpeed
+                        
+                    }
+                    else if(elem.radius <particle.radius){
+                        elem.radius -= eatSpeed;
+                        particle.radius += eatSpeed;
+                        
+                    }
+                    if(elem.radius <=1){
+                        particles.splice(particles.indexOf(elem), 1);
+                    }
+                    if(particle.radius <=1){
+                        particles.splice(particles.indexOf(particle), 1);
+                    }
+                    ctx.globalAlpha = (200 - distance) / 200;
                     ctx.beginPath();
                     ctx.moveTo(elem.position.x, elem.position.y);
                     ctx.lineTo(particle.position.x, particle.position.y);
                     ctx.stroke();
                     ctx.globalAlpha = 1;
                 }
-                
             }
-            
-        })
-    })   
+        });
+    });
+    particles.forEach((particle) => {
+        const xDif = particle.position.x - mouseX;
+        const yDif = particle.position.y - mouseY;
 
+        const distance = Math.sqrt(Math.pow(xDif, 2) + Math.pow(yDif, 2));
+
+        ctx.beginPath();
+        ctx.arc(mouseX, mouseY, 300, 0, 2 * Math.PI);
+        ctx.stroke();
+
+        if (distance < 300) {
+            const xModifier = ((300 - distance) * (xDif > 0 ? 1  : -1))*0.05 + particle.velocity.x*-1;
+            const yModifier = ((300 - distance) * (yDif > 0 ? 1  : -1))*0.05 + particle.velocity.y*-1;
+               
+                
+
+                 particle.velocityModif.x = xModifier;
+                 particle.velocityModif.y = yModifier;
+                
+        } else {
+            particle.velocityModif.x = 0;
+            particle.velocityModif.y = 0;
+        }
+    });
     requestAnimationFrame(animate);
 }
 
-
-canvas.addEventListener("mousemove", (e)=>{
-
-    const x = e.offsetX
-    const y = e.offsetY
-
-    console.log("X: "+x+" Y: "+y)
-
-})
-
-
-        
+canvas.addEventListener("mousemove", (e) => {
+    mouseX = e.offsetX;
+    mouseY = e.offsetY;
+});

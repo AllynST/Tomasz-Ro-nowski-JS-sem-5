@@ -4,6 +4,11 @@ export default class Particle {
         y: 0,
     };
 
+    velocityModif = {
+        x:0,
+        y:0
+    }
+
     radius = 5;
     velocity = {
         x: 2,
@@ -14,7 +19,7 @@ export default class Particle {
         this.radius = getRandomInt(15) + 5;
         this.velocity.x = getRandomInt(10)-5;
         this.velocity.y = getRandomInt(10)-5;
-
+  
         this.position.x = getRandomInt(window.innerWidth);
         this.position.y = getRandomInt(window.innerHeight);
 
@@ -22,14 +27,15 @@ export default class Particle {
     }
 
     velocityHandler() {
-        this.position.x += this.velocity.x;
-        this.position.y += this.velocity.y;
+        this.position.x += (this.velocity.x +this.velocityModif.x)/(this.radius*0.1)  ;
+        this.position.y += (this.velocity.y +this.velocityModif.y)/(this.radius*0.1);
 
         
     }
+    
 
     bounce() {
-        if (this.position.x < 0) {
+        if (this.position.x < 0+this.radius) {
             this.position.x = 0 + this.radius;
             this.velocity.x = this.velocity.x *-1;
     
@@ -38,7 +44,7 @@ export default class Particle {
             this.position.x = window.innerWidth - this.radius;
             this.velocity.x = this.velocity.x *-1;
         }
-        if (this.position.y < 0 ) {
+        if (this.position.y < 0+this.radius ) {
             this.position.y = 0+this.radius;
             this.velocity.y = this.velocity.y *-1;
       }
