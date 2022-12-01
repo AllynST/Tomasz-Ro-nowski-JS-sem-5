@@ -23,12 +23,11 @@ export default class Particle {
         this.position.x = getRandomInt(window.innerWidth);
         this.position.y = getRandomInt(window.innerHeight);
 
-        //TODO GET RANDOMISED VALUES
     }
 
     velocityHandler() {
-        this.position.x += (this.velocity.x +this.velocityModif.x)/(this.radius*0.1)  ;
-        this.position.y += (this.velocity.y +this.velocityModif.y)/(this.radius*0.1);
+        this.position.x += ((this.velocity.x)/(this.radius*0.1)) +this.velocityModif.x ;
+        this.position.y +=( this.velocity.y / (this.radius * 0.1)) + this.velocityModif.y;
 
         
     }

@@ -7,7 +7,7 @@ canvas.height = window.innerHeight;
 
 document.querySelector("#root").append(canvas);
 
-let n = 100; // number of particles
+let n = 500; // number of particles
 let particles = [];
 let ctx = canvas.getContext("2d");
 
@@ -18,10 +18,12 @@ for (let i = 0; i < n; i++) {
 let mouseX;
 let mouseY;
 let eatSpeed= 0.1;
+let eatDistance = 100;
 
 animate();
 
 function animate() {
+
     ctx.beginPath();
     ctx.fillStyle = "white";
 
@@ -78,9 +80,9 @@ function animate() {
         ctx.arc(mouseX, mouseY, 300, 0, 2 * Math.PI);
         ctx.stroke();
 
-        if (distance < 300) {
-            const xModifier = ((300 - distance) * (xDif > 0 ? 1  : -1))*0.05 + particle.velocity.x*-1;
-            const yModifier = ((300 - distance) * (yDif > 0 ? 1  : -1))*0.05 + particle.velocity.y*-1;
+        if (distance < eatDistance) {
+            const xModifier = ((eatDistance - distance) * (xDif > 0 ? 1  : -1))*0.05 + particle.velocity.x*-1;
+            const yModifier = ((eatDistance - distance) * (yDif > 0 ? 1  : -1))*0.05 + particle.velocity.y*-1;
                
                 
 
@@ -92,6 +94,7 @@ function animate() {
             particle.velocityModif.y = 0;
         }
     });
+   
     requestAnimationFrame(animate);
 }
 
