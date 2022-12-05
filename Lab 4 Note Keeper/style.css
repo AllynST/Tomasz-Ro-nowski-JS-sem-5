@@ -1,0 +1,85 @@
+body{
+    padding: 0;
+    margin: 0;
+    width:100%;
+    height:100vh;
+    font-size:12px;
+
+}
+
+main#wrapper{
+
+    display:grid;
+    grid-template-columns: 20% 80% ;
+    grid-template-rows:5% 15% 80%;
+
+    grid-template-areas:
+    "searchBar searchbar"
+    "aside createNote"
+    "aside content"
+    ;
+
+    width:100%;
+    height:100%;
+    background-color:royalblue;
+}
+
+div#searchBar{
+    background-color:aqua;
+    width:100%;
+    height:100%;
+    grid-area:searchBar;
+}
+
+nav#aside{
+    background-color: blueviolet;
+    grid-area:aside;
+    width:100%;
+    height:100%;
+}
+
+div#cardWrapper{
+    grid-area:content;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap:10px;
+    align-items: center;
+}
+
+div#inputCard{
+    border:solid 1px rgba(0, 0, 0, 0.356);
+    background-color: yellow;
+    padding:20px;
+    display:flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap:3px;
+    
+    width:350px;
+}
+div#inputCard *{
+    width: 100%;
+}
+
+div.noteCard{
+    padding:20px;
+    width:350px;
+    border-radius: 15px ;
+    
+    
+}
+.noteCard p.title{
+    font-weight: bold;
+    font-size:1.5em;
+}
+.noteCard p.content{
+    width: 100%;
+    text-align: justify;
+    
+    height:auto;
+    overflow-wrap: break-word;
+}
+.noteCard p.date{
+    opacity: 0.6;
+}
