@@ -13,3 +13,7 @@ canvas{
     transform-origin: center;
     border:1px solid black
 }
+#settings{
+    position:absolute;
+    left:555px;
+}

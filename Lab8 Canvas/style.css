@@ -1,16 +1,14 @@
 body{
     margin: 0;
     padding: 0;
+    width:100vw;
+    height:100vh;
+    overflow: hidden;
 }
-#fpsCounter{
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    position:absolute;
+div#settings{
     width:100px;
-    height: 100px;
-
-    font-size: 40px;
-    top:0;
-    left:0
+    height:200px;
+    position:absolute;
+    top: 15px;;
+    left:15px;
 }
