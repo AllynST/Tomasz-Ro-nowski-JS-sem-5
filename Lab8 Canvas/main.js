@@ -1,5 +1,5 @@
 import Particle from "./particle.js";
-
+import {drawBesier} from './helpers.js'
 
 let quantitySlider = document.querySelector("#ballsQ");
 let rangeSlider = document.querySelector("#conRangeValue");
@@ -39,7 +39,7 @@ reset();
 
 function reset(){
      n = quantitySlider.value;
-     //n=5;
+    // n=2;
     eatSpeed = eatStrengthSlider.value/10;
     connectRadius = rangeSlider.value;
     mousePushDistance = mousePushSlider.value;
@@ -62,116 +62,67 @@ function animate() {
     ctx.fill();
     ctx.stroke();
     
-    particles.forEach((ballOne,indexOne) => {
-        ballOne.connectedIndexes = [];
-         
+
+    for(let i =0; i<particles.length;i++){
+        let bezierColor;
+        //particles[i].render(ctx);
         
-        particles.forEach((ballTwo,indexTwo) => {
-
-            let bezierColor;
-            if (ballOne != ballTwo) {
-                const xDif = ballTwo.position.x - ballOne.position.x;
-                const yDif = ballTwo.position.y - ballOne.position.y;
-
-                const distance = Math.sqrt(
-                    Math.pow(xDif, 2) + Math.pow(yDif, 2)
-                );
-
-                if (distance < connectRadius) {
-                    if(!(ballOne.isConnected(indexTwo))){
-
-                    ballOne.connectedIndexes.push(indexTwo);
-
-                        
-                    
-                    shrink(indexOne,indexTwo); 
-
-                    ctx.globalAlpha = ((connectRadius - distance) / distance);
-                    let xModif
-                    let yModif
-                        
-                    if(xDif>yDif){                        
-                        xModif = 0;
-                        yModif = 1;
-                    }
-                    else{                        
-                        xModif = 1;
-                        yModif = 0;
-                    }
-                    
-                    
-                    ctx.beginPath();
-                    ctx.moveTo(ballOne.position.x,
-                           ballOne.position.y)
-
-                    ctx.lineTo(ballTwo.position.x,
-                    ballTwo.position.y,)
-
-                    //  ctx.moveTo(ballOne.position.x + (xModif == 0 ? 0 : -ballOne.radius),
-                    //       ballOne.position.y + (yModif == 0 ? 0 : -ballOne.radius));
-                    // ctx.bezierCurveTo(
-                    //     ballOne.position.x + (xModif == 0 ? 0 : -ballOne.radius),
-                    //     ballOne.position.y + (yModif == 0 ? 0 : -ballOne.radius),
-
-                    //     (ballOne.position.x + ballTwo.position.x)/2,
-                    //     (ballOne.position.y + ballTwo.position.y)/2,
-
-                    //     ballTwo.position.x + (xModif == 0 ? 0 : -ballTwo.radius),
-                    //     ballTwo.position.y + (yModif == 0 ? 0 : -ballTwo.radius)
-                    // );
-
-                    // ctx.lineTo(ballOne.position.x + (xModif == 0 ? 0 : +ballOne.radius),
-                    // ballOne.position.y + (yModif == 0 ? 0 : +ballOne.radius),)
-                    
-                    // ctx.bezierCurveTo(
-                    //     ballOne.position.x + (xModif == 0 ? 0 : +ballOne.radius),
-                    //     ballOne.position.y + (yModif == 0 ? 0 : +ballOne.radius),
-
-                    //     (ballOne.position.x + ballTwo.position.x)/2,
-                    //     (ballOne.position.y + ballTwo.position.y)/2,
-
-                    //     ballTwo.position.x + (xModif == 0 ? 0 : +ballTwo.radius),
-                    //     ballTwo.position.y + (yModif == 0 ? 0 : +ballTwo.radius)
-                    // );
-
-                    ctx.fillStyle = bezierColor;
-                  
-
-                    ctx.stroke();
-                    ctx.fill()                    
-                    
-                    
-                    
-                    ctx.globalAlpha = 1;
-                    }
-                    
-                }
-                
-                
-            }
+        for(let j = i+1;j<particles.length;j++){            
             
-        });    
+            const xDif = particles[j].position.x - particles[i].position.x;
+            const yDif = particles[j].position.y - particles[i].position.y;
+
+            const distance = Math.sqrt(
+                Math.pow(xDif, 2) + Math.pow(yDif, 2)
+            );
+
+            if (distance < connectRadius) {
+                bezierColor = shrink(i,j); 
+                bezierColor = "black";
+
+                ctx.globalAlpha = ((connectRadius - distance) / distance);
+                    
+                drawBesier(particles[i],particles[j],ctx,bezierColor)
+                    
+                ctx.globalAlpha = 1;
+            }
+        }
+         particles[i].render(ctx);
         
-        const xDif = ballOne.position.x - mouseX;
-        const yDif = ballOne.position.y - mouseY;
+    }
+   
 
-        const distance = Math.sqrt(Math.pow(xDif, 2) + Math.pow(yDif, 2));
+                        
+                    
+                    
 
-        if (distance < mousePushDistance) {
-            const xModifier = ((mousePushDistance - distance) * (xDif > 0 ? 1  : -1))*0.05 + ballOne.velocity.x*-1;
-            const yModifier = ((mousePushDistance - distance) * (yDif > 0 ? 1  : -1))*0.05 + ballOne.velocity.y*-1;
+                    
+
+                    
+
+                   
+    
+        
+        // const xDif = particles[i].position.x - mouseX;
+        // const yDif = particles[i].position.y - mouseY;
+
+        // const distance = Math.sqrt(Math.pow(xDif, 2) + Math.pow(yDif, 2));
+
+        // if (distance < mousePushDistance) {
+        //     const xModifier = ((mousePushDistance - distance) * (xDif > 0 ? 1  : -1))*0.05 + particles[i].velocity.x*-1;
+        //     const yModifier = ((mousePushDistance - distance) * (yDif > 0 ? 1  : -1))*0.05 + particles[i].velocity.y*-1;
                
                 
 
-                 ballOne.velocityModif.x = xModifier;
-                 ballOne.velocityModif.y = yModifier;
+        //          particles[i].velocityModif.x = xModifier;
+        //          particles[i].velocityModif.y = yModifier;
                 
-        } else {
-            ballOne.velocityModif.x = 0;
-            ballOne.velocityModif.y = 0;
-        }
-        ballOne.render(ctx);
-    });
+        // } else {
+        //     particles[i].velocityModif.x = 0;
+        //     particles[i].velocityModif.y = 0;
+        // }
+        
+   
     
     requestAnimationFrame(animate);
 }
@@ -207,6 +158,7 @@ function shrink(index1,index2){
             
             
             particles[index1].radius += eatSpeed;
+            
         }
         particles[index2].radius -= eatSpeed;
     }

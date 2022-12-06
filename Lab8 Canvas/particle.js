@@ -30,8 +30,8 @@ export default class Particle {
         this.velocity.x = getRandomInt(10)-5;
         this.velocity.y = getRandomInt(10)-5;
 
-        //  this.velocity.x = 0;
-        //  this.velocity.y = 0;
+        //   this.velocity.x = 0;
+        //   this.velocity.y = 0;
   
         this.position.x = getRandomInt(window.innerWidth);
         this.position.y = getRandomInt(window.innerHeight);
