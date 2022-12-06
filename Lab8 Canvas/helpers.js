@@ -2,7 +2,7 @@
 export function drawBesier(ball1,ball2,ctx,besierColor){
     
             let modif = getQuarter(ball1,ball2)
-            console.log(modif)
+            
             
             ctx.moveTo(
                 ball1.position.x + (modif.x == 1 ? ball1.radius :0),

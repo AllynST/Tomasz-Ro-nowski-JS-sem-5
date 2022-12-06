@@ -5,7 +5,7 @@ let quantitySlider = document.querySelector("#ballsQ");
 let rangeSlider = document.querySelector("#conRangeValue");
 
 let eatStrengthSlider = document.querySelector("#eatStrength");
-let mousePushSlider = document.querySelector("#mousePush")
+let mousePushSlider = document.querySelector("#mousePush");
 export const colorPallete =[
     '#219EBC',
     '#023047',
@@ -14,12 +14,6 @@ export const colorPallete =[
     '#06d6a0'
 ]
 
-let canvas = document.createElement("canvas");
-
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-document.querySelector("#root").append(canvas);
 
 document.querySelector("#resetBtn").addEventListener("click",()=>{
     reset();
@@ -31,6 +25,8 @@ let eatSpeed= 0.05;
 let mousePushDistance = 100;
 let connectRadius = 200;
 
+let canvas;
+
 let ctx;
 let n;
 let particles = [];
@@ -38,6 +34,17 @@ let particles = [];
 reset();
 
 function reset(){
+
+    if(canvas != undefined){
+        canvas.remove();
+    }
+    canvas = document.createElement("canvas");
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    document.querySelector("#root").append(canvas);
+
      n = quantitySlider.value;
     // n=2;
     eatSpeed = eatStrengthSlider.value/10;
