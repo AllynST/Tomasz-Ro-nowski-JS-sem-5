@@ -45,7 +45,7 @@ function reset(){
 
     document.querySelector("#root").append(canvas);
 
-     n = quantitySlider.value;
+    n = quantitySlider.value;
     // n=2;
     eatSpeed = eatStrengthSlider.value/10;
     connectRadius = rangeSlider.value;

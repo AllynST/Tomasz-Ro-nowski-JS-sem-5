@@ -4,7 +4,7 @@ export default class Particle {
     
     color = colorPallete[getRandomInt(colorPallete.length-1)]
 
-    connectedIndexes = []
+   
 
     position = {
         x: 0,
@@ -48,9 +48,7 @@ export default class Particle {
         
     }
 
-    isConnected = (ball) =>{        
-        return this.connectedIndexes.includes(ball)
-    }
+   
 
     checkForRemoval = () =>{
         if(this.radius < 1){
