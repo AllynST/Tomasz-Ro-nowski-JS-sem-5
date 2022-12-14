@@ -1,6 +1,8 @@
 import {loadAddTrackBtn} from "./elementLoader.js"
 
 class LayoutController {
+
+    last = "Tracks";
     constructor() {
         this.asideHandler();
         this.switchContent("Tracks")
@@ -43,7 +45,9 @@ class LayoutController {
     };
 
     switchContent = (targetPage) => {
-        
+        if(this.last == targetPage){
+            return
+        }
         const xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function (){
             
@@ -67,6 +71,7 @@ class LayoutController {
         };
         xhttp.open("GET", `./HtmlSnippets/${targetPage}.txt`);
         xhttp.send();
+        this.last = targetPage;
     };
 }
 

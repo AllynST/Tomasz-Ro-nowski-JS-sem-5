@@ -96,6 +96,8 @@ class visualsController{
         drawNoteOnTimeLine = (Note,color) =>{
             
             let canvas = document.querySelector('#trackVisualiser');
+            canvas.height = "1000px";
+            canvas.width = "1000px";
 
             if(canvas === undefined){
 
@@ -104,13 +106,12 @@ class visualsController{
                 return;
             }
             const ctx = canvas.getContext("2d");
-            ctx.height = "200px";
-            ctx.width = "200px";
+            
             let coordinates = Note.keyCode.substring(1,3);
             
             ctx.beginPath();
             ctx.fillStyle = color;
-            ctx.rect(10*coordinates,50,25,50);
+            ctx.rect(10*coordinates,20,25,50);
             ctx.fill();
 
             ctx.stroke();

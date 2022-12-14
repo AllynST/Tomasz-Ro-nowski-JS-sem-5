@@ -8,6 +8,7 @@ class Conductor {
     track = [];
     AudioContext = null;
 
+    //FIXME po kilknięciu w tą samą zakładke element loader dodaje dwa listenery
 
     //Duration of the track in seconds
     timeLineDuration = 10;
@@ -47,8 +48,7 @@ class Conductor {
             }
 
             this.track.forEach((t) => {
-                t.playTrack();
-                console.log("track played")
+                t.playTrack();                
             });
         }, this.timeLineDuration * 1001);
     };
@@ -214,7 +214,7 @@ class Conductor {
         note = new Note(this.AudioContext.currentTime, key, 1);
         if (this.recordState == true) {
             this.track[this.chosenTrack].addNote(note);
-        }
+        }        
         this.track[this.chosenTrack].playSoundByKey(note);
 
         
