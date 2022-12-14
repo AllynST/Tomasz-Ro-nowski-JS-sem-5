@@ -1,4 +1,4 @@
-import {visualsController} from "./visualsController.js"
+import visualsController from "./visualsController.js"
 import {Piano} from "./piano.js"
 import {Drum} from "./drumKit.js"
 import {Track} from "./track.js"
@@ -8,7 +8,6 @@ class Conductor {
     track = [];
     AudioContext = null;
 
-    visualsController = new visualsController();
 
     //Duration of the track in seconds
     timeLineDuration = 10;
@@ -211,13 +210,14 @@ class Conductor {
     //TODO Update settings (filters,gain etc...)
 
     playSound = (key) => {
+        let note;
+        note = new Note(this.AudioContext.currentTime, key, 1);
         if (this.recordState == true) {
-            console.log(this.AudioContext.currentTime);
-
-            let note = new Note(this.AudioContext.currentTime, key, 1);
             this.track[this.chosenTrack].addNote(note);
         }
-        this.track[this.chosenTrack].playSoundByKey(key);
+        this.track[this.chosenTrack].playSoundByKey(note);
+
+        
     };
 }
 

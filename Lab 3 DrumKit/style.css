@@ -259,17 +259,25 @@ div#timeLineIndicator {
     height: 80%;
 }
 
-div#trackArea {
-    overflow-y: scroll;
-    width:200px;
-    background-color: red;
+
+canvas#trackVisualiser{
+    position:absolute;
+    right:0px;
+    width:1200px;
+    height:600px;
+    
 }
 div#timelane {
-    background-color: black;
+    left:0px;
     width: 100%;
     height: 50px;
 }
-
+div#trackArea {
+    position: relative;
+    
+    width:100%;
+    /* background-color: red; */
+}
 .trackAreaHeader{
     position:relative;
 
@@ -290,19 +298,15 @@ div#timelane {
 }
 
 .trackAreaHeader h1{
-
-    margin: 0px 15px;padding: 0;
+    margin: 0px 15px;
+    padding: 0;
     font-size: 3em;
 }
 
-
-
-
-
-
-div#trackContainer {   
+div#trackContainer {  
     
-    width: 100%;
+    overflow-y: scroll;
+    width: 200px;
     height: 100%;
 }
 div.trackRow{

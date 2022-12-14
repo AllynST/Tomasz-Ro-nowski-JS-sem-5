@@ -23,9 +23,10 @@ export class Track{
         
         
     }
-    playSoundByKey = (key) =>{
+    playSoundByKey = (note) =>{
+        console.log(note)
           
-        this.instrument.playSound(key)
+        this.instrument.playSound(note)
     }
     playSoundByIndex = (index) =>{     
         
@@ -54,7 +55,7 @@ export class Track{
             },note.startTime*1000)
            
              
-            this.instrument.playSound(note.keyCode,note.startTime)
+            this.instrument.playSound(note)
         });
         
     }

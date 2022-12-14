@@ -1,7 +1,7 @@
 import Helpers from "./Helpers.js";
 
 export default class Ball {
-    radius = 50;
+    radius = 20;
 
     traces = [];
     maxTracesCount = 20;
@@ -71,51 +71,13 @@ export default class Ball {
     render(context, planeTilt) {
         this.trace(this.currPosX,this.currPosY,context);
 
-        // this.currPosX += this.sensorAcceleration.x +planeTilt.X + this.accelerationModifier.x
-        // this.currPosY += this.sensorAcceleration.y +planeTilt.Y +this.accelerationModifier.y
+        this.currPosX += this.sensorAcceleration.x + this.accelerationModifier.x;
+        this.currPosY += this.sensorAcceleration.y + this.accelerationModifier.y;
 
-        this.currPosX +=
-            this.sensorAcceleration.x + this.accelerationModifier.x;
-        this.currPosY +=
-            this.sensorAcceleration.y + this.accelerationModifier.y;
-
-        // context.beginPath();
-        // context.arc(this.currPosX, this.currPosY, this.radius,0, 4 * Math.PI);
-
-        //TODO delete hitbox marker
-        
-        
-        
-      
-        context.save();   
-
-        context.translate(this.currPosX-this.radius/2,this.currPosY-this.radius/2)        
-        context.rotate(this.rotation*Math.PI/180);
-        
         context.beginPath();
-        
-        //  context.rect(0,0,window.innerWidth,window.innerHeight)
-        context.arc(0, 0, 3,0, 4 * Math.PI);
-        context.fillStyle = "red";
-        context.fill();
-        context.stroke();
-
-        let shipImg = new Image();
-        shipImg.src = "./images/ship.png";
-           
-        context.drawImage(
-            shipImg,
-            0-this.radius/2,
-            0-this.radius/2,
-            this.radius,
-            this.radius
-        );
-        
-        context.restore();
-        // setTimeout(()=>{
-        //     
-        // },2000)
-        
+        context.arc(this.currPosX, this.currPosY, this.radius,0, 4 * Math.PI);
+        context.stroke();       
+      
 
         this.tiltToDirection();
         this.movementConstrains();
@@ -160,7 +122,7 @@ export default class Ball {
             const temp = Math.sqrt(Math.pow(this.sensorAcceleration.x,2) + Math.pow(this.sensorAcceleration.y,2))
             console.log("temp: " + temp)
           
-            rotationValue =90- Math.sin(this.sensorAcceleration.x / temp)* 180 /Math.PI;
+            rotationValue =90- Math.tan(this.sensorAcceleration.x / temp)* 180 /Math.PI;
      
             
             
