@@ -1,6 +1,6 @@
-export class visualsController{
+class visualsController{
     //TODO
-
+    notes
 
     startTimeLineIndicator = () =>{
 
@@ -32,7 +32,7 @@ export class visualsController{
                
         const deleteBtn = document.createElement("img");        
         deleteBtn.className = "controls";
-        deleteBtn.src = "./images/Delete-Transparent.png"
+        deleteBtn.src = "./images/Delete-Transparent.png";
         deleteBtn.id = index;
         
         
@@ -58,28 +58,28 @@ export class visualsController{
         elem.appendChild(muteBtn);
         elem.appendChild(deleteBtn);
 
-        let instrumentsDiv = document.querySelector("#instrumentsInner")
+        let instrumentsDiv = document.querySelector("#instrumentsInner");
 
         labelElem.addEventListener("click",(e)=>{       
             this.chosenTrack = e.target.id;
 
             if(this.track[e.target.id].instrument instanceof Piano){
-                instrumentsDiv.style.top ="0%"
+                instrumentsDiv.style.top ="0%";
             }
             else if(this.track[e.target.id].instrument instanceof Drum){
-                instrumentsDiv.style.top = "-100%"
+                instrumentsDiv.style.top = "-100%";
             }
             else{
-                console.log("something went wrong")
+                console.log("something went wrong");
             }
             
 
         })
         muteElem.addEventListener("click",(e)=>{            
-            console.log(`${e.target.id} has been muted`)
+            console.log(`${e.target.id} has been muted`);
         })
         deleteElem.addEventListener("click" , (e)=>{
-            console.log(e.target.id+" has been deleted")
+            console.log(e.target.id+" has been deleted");
         })
 
         
@@ -87,11 +87,44 @@ export class visualsController{
        
         trackContainer.prepend(elem);
 
-        
+    }
 
-        drawNotesOnTrack = (trackNum) =>{
+        drawCanvas = () =>{
+
+        }
+
+        drawNoteOnTimeLine = (Note,color) =>{
+            
+            let canvas = document.querySelector('#trackVisualiser');
+            canvas.height = "1000px";
+            canvas.width = "1000px";
+
+            if(canvas === undefined){
+
+                //TODO DELETE CONSOLE LOG
+                console.log("Cannot perform canvas operation now");
+                return;
+            }
+            const ctx = canvas.getContext("2d");
+            
+            let coordinates = Note.keyCode.substring(1,3);
+            
+            ctx.beginPath();
+            ctx.fillStyle = color;
+            ctx.rect(10*coordinates,20,25,50);
+            ctx.fill();
+
+            ctx.stroke();
+            
+
+
+
             //TODO CANVAS KIEDYŚ
         }
 
-    }
+        
+
+    
 }
+
+export default new visualsController();

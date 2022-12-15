@@ -6,7 +6,7 @@
            <div>
 <div id="trackArea">
            
-            
+            <canvas id="trackVisualiser"> </canvas>
 
                 <div id="trackContainer">
                  
