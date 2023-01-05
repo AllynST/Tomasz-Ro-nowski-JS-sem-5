@@ -10,8 +10,7 @@ class LayoutController {
 
     asideHandler = () => {
         const aside = document.querySelector("#menu");
-        const content = document.querySelector("#contentWrapper");
-        const bulletButton = document.querySelector("#bulletButton");
+                const bulletButton = document.querySelector("#bulletButton");
         const menuBubble = document.querySelector("#menuBubble");
         const menuOptions = Array.from(
             document.querySelector("#menuOptions").children
