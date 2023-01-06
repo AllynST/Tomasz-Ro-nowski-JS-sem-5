@@ -6,9 +6,9 @@ import {Recorder} from "./Recorder.js"
 
 export function handleKeyboardClick(keyCode:string){
     if(keyCode == "Q"){
-        Recorder.recordState = !Recorder.recordState;
-        console.log(`recording: ${Recorder.recordState}`)
-        Player.playTrack()
+
+        Recorder.handleRecordState();
+        
         return;
     }
     if((Recorder.recordState == true)){
