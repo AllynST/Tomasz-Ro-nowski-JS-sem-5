@@ -4,11 +4,11 @@ export function createTrackElem(name,color,index):HTMLElement{
 
         const trackNameP = createCustomElement("p",{
                 innerText:name
-        })
+        });
 
         const colorNameP = createCustomElement("p",{
                 innerText:color,                
-        })        
+        });     
         colorNameP.style.color = color; 
         
         const label = createCustomElement("div",{
@@ -18,13 +18,13 @@ export function createTrackElem(name,color,index):HTMLElement{
                         trackNameP,
                         colorNameP
                 ]
-        }) 
+        });
 
         const trackRow = createCustomElement("div",{
                 classname:"trackRow",
                 id:index,
                 children:[label]
-        }) 
+        });
 
         return trackRow;
         

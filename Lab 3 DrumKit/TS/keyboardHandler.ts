@@ -4,19 +4,29 @@ import Player from "./Player.js";
 import {Recorder} from "./Recorder.js"
 
 
-export function handleKeyboardClick(keyCode:string){
-    if(keyCode == "Q"){
+export function handleMouseClick(keyCode:string){    
+    recordStateChecker(keyCode);
+    Piano.playSound(new Note(0,keyCode,1))
+}
 
-        Recorder.handleRecordState();
-        
+
+export function handleKeyboardClick(keyCode:string){
+    console.log(keyCode)     
+    if(keyCode == "SPACE"){
+        Recorder.handleRecordState();        
         return;
     }
-    if((Recorder.recordState == true)){
-        Recorder.recordKey(keyCode);
-    }   
-    
+
+    recordStateChecker(keyCode);
     
     Piano.playSound(new Note(0,keyCode,1))
+} 
+
+
+function recordStateChecker(keyCode){
+    if((Recorder.recordState == true)){
+        Recorder.recordKey(keyCode);
+    } 
 }
 
 

@@ -5,7 +5,7 @@ class Player {
 Player.playTrack = () => {
     Recorder.resetContextTime();
     let interval = setInterval(() => {
-        TimeLine.tracks.forEach(track => {
+        TimeLine.tracks.forEach((track) => {
             track.playTrack();
         });
         Recorder.resetContextTime();

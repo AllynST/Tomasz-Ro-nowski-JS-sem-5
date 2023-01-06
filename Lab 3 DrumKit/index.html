@@ -54,24 +54,42 @@
         <img src="./images/arrow.png" alt="" id="bulletButton">
         <div id="menuBubble"></div>
         <div id="menuOptions">
-            <div id="home"><b>Home</b></div>
-            <div id="">Tracks</div>
+            <div id="Home"><b>Home</b></div>
+            <div id="Tracks">Tracks</div>
             <!-- TODO INSTRUMENTS EFFECTS -->
-            <div id="">Instruments</div>
+            <div id="Instruments">Instruments</div>
             <!-- TODO Cards with tools that dont need their own page
                 Metronome as a lightbox -->
-            <div id="">Tools</div>
+            <div id="Tools">Tools</div>
             <!-- Synthesia  (CANVAS NEEDED) -->
-            <div id="">Freeplay</div>
+            <div id="Freeplay">Freeplay</div>
             <!-- TODO Falling notes (CANVAS NEEDED)-->
-            <div id="">Learn</div>
+            <div id="Learn">Learn</div>
             <!-- TODO Appsettings like overall volume theme -->
-            <div id="">Settings</div>
+            <div id="Settings">Settings</div>
         </div>
     </aside>
     <main id="contentWrapper">
         <section id="content">
-            
+            <div id="TracksPage">
+                <div class="trackAreaHeader">
+                    <h1>Track View</h1>
+                    <!--TODO create new track -->
+                    <button id="createTrackBtn">Create new Track</button>
+                </div>
+                <div id="trackArea">
+                
+                    <canvas id="trackVisualiser"></canvas>
+                    <div id="trackContainer"></div>
+                </div>
+            </div>
+            <div id="HomePage"></div>
+            <div id="InstrumentsPage"></div>
+            <div id="ToolsPage"></div>
+            <div id="FreeplayPage"></div>
+            <div id="LearnPage"></div>
+            <div id="SettingsPage"></div>       
+     
         </section>
 
         <section id="instruments">

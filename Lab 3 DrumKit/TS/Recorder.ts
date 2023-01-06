@@ -15,9 +15,9 @@ export class Recorder{
     static recordState = false;
     static Context:AudioContext = new AudioContext();   
     
-    static recordKey = (keyCode:string):void =>{        
+    static recordKey = (keyCode:string):void =>{       
        
-        let note = new Note(this.Context.currentTime,keyCode,1); 
+        let note = new Note(this.Context.currentTime,keyCode,1);
        
         TimeLine.addNoteToTrack(note);       
 
@@ -26,6 +26,7 @@ export class Recorder{
     static handleRecordState = ():void =>{
       
         Recorder.recordState = !Recorder.recordState;
+        console.log(Recorder.recordState)
 
         if(Recorder.recordState === false){
             this.Context.suspend();
@@ -46,10 +47,6 @@ export class Recorder{
         
     }
 
-    
-    #test = ()=>{
-
-    }
 
 
 

@@ -3,7 +3,7 @@
            <h1>Track View</h1>
            <!--TODO create new track -->
            <button id="createTrackBtn">Create new Track</button>
-           <div>
+           </div>
 <div id="trackArea">
            
             <canvas id="trackVisualiser"> </canvas>

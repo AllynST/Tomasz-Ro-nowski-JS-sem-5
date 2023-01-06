@@ -1,5 +1,6 @@
 
 import { Note } from "./Note.js";
+import { keyboardClickVisual } from "./visualsHandler.js";
 
 export interface Piano{
     playSound(note:Note):void;
@@ -7,13 +8,12 @@ export interface Piano{
 export class Piano {    
 
     static async playSound(note){
-        //I have no idea whats going on in here
-        if(note.startTime == undefined){
+        if(note === undefined) return 
+    
+        if(note.startTime === undefined){
             note.startTime = 0;
         }
 
-        //Following code and synchronization 
-        //took 3 cups of coffee to make(edit 4)
         let context = new AudioContext();
      
         const primaryGainControl = context.createGain();
@@ -31,6 +31,7 @@ export class Piano {
                 pianoSource.buffer = pianoBuffer;
                 pianoSource.connect(primaryGainControl);                
                 pianoSource.start(context.currentTime+note.startTime);
+                keyboardClickVisual(note.keyCode,"blue",note.startTime)
             }
         );    
 

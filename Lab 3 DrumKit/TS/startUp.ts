@@ -1,13 +1,16 @@
-import { handleKeyboardClick } from "./keyboardHandler.js";
+import { handleKeyboardClick, handleMouseClick } from "./keyboardHandler.js";
+import KeyboardValues from "./keyboardValues.js";
+import { connectAsideBtns } from "./layoutHandler.js";
 
 
 export function startUP():void{
-    connectKeys();
-    connectKeyboard();
+    connectMouseKeys();
+    connectKeyboardKeys();
+    connectAsideBtns();
 }
 
 
-function connectKeys():void{
+function connectMouseKeys():void{
     const pianoKeysWhite = Array.from(document.querySelectorAll(".keyWhite"));
     const pianoKeysBlack = Array.from(document.querySelectorAll(".keyBlack"));
         
@@ -17,7 +20,7 @@ function connectKeys():void{
        
         elem.addEventListener("click",(event)=>{           
           
-            handleKeyboardClick(elem.id)
+            handleMouseClick(elem.id)
 
             // event.target.style.opacity ="0.5"
             // setTimeout(()=>{
@@ -34,7 +37,7 @@ function connectKeys():void{
         
         elem.addEventListener("click",(event)=>{
             
-            handleKeyboardClick(elem.id)
+            handleMouseClick(elem.id)
             // event.target.style.backgroundColor ="#222422"
             // setTimeout(()=>{
             //     event.target.style.backgroundColor ="black"
@@ -45,9 +48,16 @@ function connectKeys():void{
 }
 
 
-function connectKeyboard():void{
+function connectKeyboardKeys():void{
     document.addEventListener("keydown",(event)=>{
-        console.log("key pressed")
-        handleKeyboardClick(event.key.toUpperCase())
+        if(event.code.toLocaleUpperCase() == "SPACE"){
+            handleKeyboardClick("SPACE")
+            return;
+        }
+
+        let keyboardValue = KeyboardValues[event.key.toUpperCase() as keyof typeof KeyboardValues]         
+        handleKeyboardClick(keyboardValue)
+        
     })
+    
 }

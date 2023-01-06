@@ -33,8 +33,6 @@ export class Track{
         
         this.notes.forEach((note:Note) => {    
             console.log(note)
-           
-             
             Piano.playSound(note)
         });
         
