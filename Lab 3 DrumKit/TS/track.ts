@@ -1,5 +1,6 @@
 import {Note} from "./Note.js"
 import Piano from './Piano.js'
+import TimeLine from "./TimeLine.js";
 
 export interface Track{
     addNote(Note:Note):void;
@@ -14,14 +15,15 @@ export class Track{
     private notes :Note[] = []
     private muted = false;
     private instrument
-    private color
-    private name:string;
+    index:number
+    color:string
+    name:string;
 
 
-    constructor(instrument,color,name){   
+    constructor(index:number,name:string,color:string){   
         this.color = color;
         this.name = name;
-        this.instrument = instrument;
+        this.index = index;
     }
 
     addNote = (Note:Note):void =>{
@@ -33,7 +35,7 @@ export class Track{
         
         this.notes.forEach((note:Note) => {    
             console.log(note)
-            Piano.playSound(note)
+            Piano.playSound(note,this.color)
         });
         
     }

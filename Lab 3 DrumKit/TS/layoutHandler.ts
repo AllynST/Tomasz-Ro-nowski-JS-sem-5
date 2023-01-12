@@ -8,7 +8,7 @@ const FreeplayPageRef = document.getElementById("FreeplayPage");
 const LearnPageRef = document.getElementById("LearnPage");
 const SettingsPageRef = document.getElementById("SettingsPage");
 
-let prev:string;
+let prev:string = "FreeplayPage";
 
 export function switchContentPage(pageName:string):void{
 
@@ -22,31 +22,36 @@ export function switchContentPage(pageName:string):void{
     prev = pageName;
  
     console.log("Switched to: "+pageName)
-    switch(pageName){
-        case "HomePage":
-            HomePageRef.style.display = "block";            
-        break;
-        case "TracksPage":
-            TracksPageRef.style.display = "block";
-        break;
-        case "InstrumentsPage":
-            InstrumentsPageRef.style.display = "block";
-        break;
-        case "ToolsPage":
-            ToolsPageRef.style.display = "block";
-        break;
-        case "FreeplayPage":
-            FreeplayPageRef.style.display = "block";
-        break;
-        case "LearnPage":
-            LearnPageRef.style.display = "block";
-        break;
-        case "SettingsPage":
-            SettingsPageRef.style.display = "block";
-        break;       
-        
-    }
 
+    //Timeout to match the bubble animation
+    setTimeout(() => {
+        switch(pageName){
+            case "HomePage":
+                HomePageRef.style.display = "block";            
+            break;
+            case "TracksPage":
+                TracksPageRef.style.display = "block";
+            break;
+            case "InstrumentsPage":
+                InstrumentsPageRef.style.display = "block";
+            break;
+            case "ToolsPage":
+                ToolsPageRef.style.display = "block";
+            break;
+            case "FreeplayPage":
+                FreeplayPageRef.style.display = "block";
+            break;
+            case "LearnPage":
+                LearnPageRef.style.display = "block";
+            break;
+            case "SettingsPage":
+                SettingsPageRef.style.display = "block";
+            break;       
+            
+        }
+    
+    },200);
+    
 }
 
 

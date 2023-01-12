@@ -1,6 +1,6 @@
 import Piano from './Piano.js';
 export class Track {
-    constructor(instrument, color, name) {
+    constructor(index, name, color) {
         this.notes = [];
         this.muted = false;
         this.addNote = (Note) => {
@@ -9,7 +9,7 @@ export class Track {
         this.playTrack = () => {
             this.notes.forEach((note) => {
                 console.log(note);
-                Piano.playSound(note);
+                Piano.playSound(note, this.color);
             });
         };
         this.muteTrack = () => {
@@ -17,6 +17,6 @@ export class Track {
         };
         this.color = color;
         this.name = name;
-        this.instrument = instrument;
+        this.index = index;
     }
 }

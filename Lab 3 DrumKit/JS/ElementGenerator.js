@@ -1,24 +1,51 @@
+import TimeLine from "./TimeLine.js";
 import { createCustomElement } from "./helpers.js";
-export function createTrackElem(name, color, index) {
+export function createTrackElem(Track) {
+    let trackContainer = document.getElementById("TrackList");
     const trackNameP = createCustomElement("p", {
-        innerText: name
+        innerText: Track.name
     });
-    const colorNameP = createCustomElement("p", {
-        innerText: color,
+    trackNameP.style.color = Track.color;
+    const muteBtn = createCustomElement("div", {
+        id: Track.index,
+        className: "labelIcon muteBtn"
     });
-    colorNameP.style.color = color;
+    const deleteBtn = createCustomElement("div", {
+        id: Track.index,
+        className: "labelIcon deleteBtn"
+    });
+    const clearBtn = createCustomElement("div", {
+        id: Track.index,
+        className: "labelIcon clearBtn"
+    });
     const label = createCustomElement("div", {
-        id: index,
+        id: Track.index,
         className: "trackLabel",
         children: [
             trackNameP,
-            colorNameP
+            muteBtn,
+            deleteBtn,
+            clearBtn
         ]
     });
-    const trackRow = createCustomElement("div", {
-        classname: "trackRow",
-        id: index,
-        children: [label]
+    connectTrackListeners(label, muteBtn, deleteBtn, clearBtn);
+    console.log("track appended");
+    trackContainer.prepend(label);
+}
+function connectTrackListeners(label, muteBtn, deleteBtn, clearBtn) {
+    //TODO CHANGE ANY add logic
+    label.addEventListener("click", (e) => {
+        console.log("Switched to track: " + e.target.id);
+        TimeLine.selectedTrack = e.target.id;
     });
-    return trackRow;
+    muteBtn.addEventListener("click", (e) => {
+        console.log("Track muted: " + e.target.id);
+        e.target.classList.toggle("muted");
+    });
+    deleteBtn.addEventListener("click", (e) => {
+        console.log("TrackDeleted: " + e.target.id);
+    });
+    clearBtn.addEventListener("click", (e) => {
+        console.log("Track: " + e.target.id + " cleared");
+    });
 }
