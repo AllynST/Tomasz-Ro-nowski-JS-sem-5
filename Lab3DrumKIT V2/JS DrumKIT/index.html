@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="./CSS/style.scss" />     
+        <link rel="stylesheet" href="./CSS/keyboard.scss">
+        <link rel="stylesheet" href="./CSS/TrackPage.scss" />
+    </head>
+    <body>
+
+        <div id="addTrackModalContainer" style="display:none">
+            <div id="addTrackModalBox">
+                <h1>Track Settings</h1>
+                <input type="text" id="trackNameInput">
+                <div id="instrumentsContainer">
+                    <!-- TODO MAKE INSTRUMENT SELECTION DYNAMIC -->
+                    
+                </div>
+                <div id="colorPickerContainer">
+                    <div id="colorPicker">
+                        <div style="background-color:yellow"></div>
+                        <div style="background-color:red"></div>
+                        <div style="background-color:cyan"></div>
+                        <div style="background-color:green"></div>
+                        <div style="background-color:lime"></div>
+                        <div style="background-color:aquamarine"></div>
+                        <div style="background-color:darkblue"></div>
+                        <div style="background-color:magenta;"></div>
+                        <div style="background-color:slateblue;"></div>
+                        <div style="background-color:white"></div>
+
+                    </div>
+                    <div id="chosenColorBox">
+                    
+                    </div>
+                </div>
+
+
+
+                <button id="addTrackBtn">Add Track</button>
+            </div>
+        
+        </div>
+
+<div id="wrapper">
+    <aside id="menu">
+        <img src="./arrow.png" alt="" id="bulletButton">
+        <div id="menuBubble"></div>
+        <div id="menuOptions">
+            <div id="Home"><b>Home</b></div>
+            <div id="Tracks">Tracks</div>
+            <!-- TODO INSTRUMENTS EFFECTS -->
+            <div id="Instruments">Instruments</div>
+            <!-- TODO Cards with tools that dont need their own page
+                Metronome as a lightbox -->
+            <div id="Tools">Tools</div>
+            <!-- Synthesia  (CANVAS NEEDED) -->
+            <div id="Freeplay">Freeplay</div>
+            <!-- TODO Falling notes (CANVAS NEEDED)-->
+            <div id="Learn">Learn</div>
+            <!-- TODO Appsettings like overall volume theme -->
+            <div id="Settings">Settings</div>
+        </div>
+    </aside>
+    <main id="contentWrapper">
+        <section id="content">
+
+            <div class="subPage" id="TracksPage" style="display:none">
+                <div class="trackAreaHeader">
+                    <h1>Track View</h1>
+                    <!--TODO create new track -->
+                    
+                </div>
+                <div id="TrackViewContent">
+                    <div id="TrackList">
+                        <button id="createTrackBtn">+</button>
+                    </div>
+                    <div id="TrackVisContainer">
+                        <div class="trackTimeLineBar">
+                            <div class="trackCurrentTime"></div>
+                        </div>
+                        <canvas id="trackVisualiser"></canvas>
+                        <div id="visualiserKeyboard">
+                            <div id="octaveSelector">
+                                <div class="octave" id="0"></div>
+                                <div class="octave" id="1"></div>
+                                <div class="octave" id="2"></div>
+                                <div class="octave" id="3"></div>
+                                <div class="octave" id="4"></div>
+                                <div class="octave" id="5"></div>
+                                <div class="octave" id="6"></div>
+                            </div>
+
+
+                            <div id="visualiserWhiteKeys">
+
+                                <div class="visualiserKeyWhite">A0</div>
+                                <div class="visualiserKeyWhite">B0</div>
+
+                                <div class="visualiserKeyWhite">C1</div>
+                                <div class="visualiserKeyWhite">D1</div>
+                                <div class="visualiserKeyWhite">E1</div>
+                                <div class="visualiserKeyWhite">F1</div>
+                                <div class="visualiserKeyWhite">G1</div>
+                                <div class="visualiserKeyWhite">A1</div>
+                                <div class="visualiserKeyWhite">B1</div>
+
+                                <div class="visualiserKeyWhite">C2</div>
+                                <div class="visualiserKeyWhite">D2</div>
+                                <div class="visualiserKeyWhite">E2</div>
+                                <div class="visualiserKeyWhite">F2</div>
+                                <div class="visualiserKeyWhite">G2</div>
+                                <div class="visualiserKeyWhite">A2</div>
+                                <div class="visualiserKeyWhite">B2</div>
+
+                                <div class="visualiserKeyWhite">C3</div>
+                                <div class="visualiserKeyWhite">D3</div>
+                                <div class="visualiserKeyWhite">E3</div>
+                                <div class="visualiserKeyWhite">F3</div>
+                                <div class="visualiserKeyWhite">G3</div>
+                                <div class="visualiserKeyWhite">A3</div>
+                                <div class="visualiserKeyWhite">B3</div>
+
+                                <div class="visualiserKeyWhite">C4</div>
+                                <div class="visualiserKeyWhite">D4</div>
+                                <div class="visualiserKeyWhite">E4</div>
+                                <div class="visualiserKeyWhite">F4</div>
+                                <div class="visualiserKeyWhite">G4</div>
+                                <div class="visualiserKeyWhite">A4</div>
+                                <div class="visualiserKeyWhite">B4</div>
+
+                                <div class="visualiserKeyWhite">C5</div>
+                                <div class="visualiserKeyWhite">D5</div>
+                                <div class="visualiserKeyWhite">E5</div>
+                                <div class="visualiserKeyWhite">F5</div>
+                                <div class="visualiserKeyWhite">G5</div>
+                                <div class="visualiserKeyWhite">A5</div>
+                                <div class="visualiserKeyWhite">B5</div>
+
+                                <div class="visualiserKeyWhite">C6</div>
+                                <div class="visualiserKeyWhite">D6</div>
+                                <div class="visualiserKeyWhite">E6</div>
+                                <div class="visualiserKeyWhite">F6</div>
+                                <div class="visualiserKeyWhite">G6</div>
+                                <div class="visualiserKeyWhite">A6</div>
+                                <div class="visualiserKeyWhite">B6</div>
+
+                                <div class="visualiserKeyWhite">C7</div>
+                                <div class="visualiserKeyWhite">D7</div>
+                                <div class="visualiserKeyWhite">E7</div>
+                                <div class="visualiserKeyWhite">F7</div>
+                                <div class="visualiserKeyWhite">G7</div>
+                                <div class="visualiserKeyWhite">A7</div>
+                                <div class="visualiserKeyWhite">B7</div>
+
+                                <div class="visualiserKeyWhite">C8</div>
+
+                                
+                               
+                            </div>
+
+                            <div id="visualiserBlackKeys">
+                                
+                            </div>
+                        </div>
+                        <!-- TODO KEYBOARD LAYER at the bottom -->
+                    </div>
+                    
+                    <div id="keyboard">
+                        
+                        <div id="whiteContainer">     
+                                          
+                            <div class="keyWhite" id="C2"></div>
+                            <div class="keyWhite" id="D2"></div>
+                            <div class="keyWhite" id="E2"></div>
+                            <div class="keyWhite" id="F2"></div>
+                            <div class="keyWhite" id="G2"></div>
+                            <div class="keyWhite" id="A2"></div>
+                            <div class="keyWhite" id="B2"></div>
+
+                            <div class="keyWhite" id="C3"></div>
+                            <div class="keyWhite" id="D3"></div>
+                            <div class="keyWhite" id="E3"></div>
+                            <div class="keyWhite" id="F3"></div>
+                            <div class="keyWhite" id="G3"></div>
+                            <div class="keyWhite" id="A3"></div>
+                            <div class="keyWhite" id="B3"></div>
+
+                            <div class="keyWhite" id="C4"></div>
+                            <div class="keyWhite" id="D4"></div>
+                            <div class="keyWhite" id="E4"></div>
+                            <div class="keyWhite" id="F4"></div>
+                            <div class="keyWhite" id="G4"></div>
+                            <div class="keyWhite" id="A4"></div>
+                            <div class="keyWhite" id="B4"></div>
+
+                            <div class="keyWhite" id="C5"></div>
+                            <div class="keyWhite" id="D5"></div>
+                            <div class="keyWhite" id="E5"></div>
+                            <div class="keyWhite" id="F5"></div>
+                            <div class="keyWhite" id="G5"></div>
+                            <div class="keyWhite" id="A5"></div>
+                            <div class="keyWhite" id="B5"></div>
+
+                            <div class="keyWhite" id="C6"></div>
+                            <div class="keyWhite" id="D6"></div>
+                            <div class="keyWhite" id="E6"></div>
+                            <div class="keyWhite" id="F6"></div>
+                            <div class="keyWhite" id="G6"></div>
+                            <div class="keyWhite" id="A6"></div>
+                            <div class="keyWhite" id="B6"></div>
+
+                            <div class="keyWhite" id="C7"></div>
+                            <div class="keyWhite" id="D7"></div>
+                            <div class="keyWhite" id="E7"></div>
+                            <div class="keyWhite" id="F7"></div>
+                            <div class="keyWhite" id="G7"></div>
+                            <div class="keyWhite" id="A7"></div>
+                            <div class="keyWhite" id="B7"></div>
+                            
+                            
+                           
+                        </div>
+        
+                        <div id="blackContainer">
+                            <div class="keyBlack"></div>
+                            <div class="keyBlack blackSpacing"></div>
+                            <div class="keyBlack"></div>
+                            <div class="keyBlack"></div>
+                            <div class="keyBlack blackSpacing"></div>
+
+                            <div class="keyBlack"></div>
+                            <div class="keyBlack blackSpacing"></div>
+                            <div class="keyBlack"></div>
+                            <div class="keyBlack"></div>
+                            <div class="keyBlack blackSpacing"></div>
+
+                            <div class="keyBlack"></div>
+                            <div class="keyBlack blackSpacing"></div>
+                            <div class="keyBlack"></div>
+                            <div class="keyBlack"></div>
+                            <div class="keyBlack blackSpacing"></div>
+
+                            <div class="keyBlack"></div>
+                            <div class="keyBlack blackSpacing"></div>
+                            <div class="keyBlack"></div>
+                            <div class="keyBlack"></div>
+                            <div class="keyBlack blackSpacing"></div>
+
+                            <div class="keyBlack"></div>
+                            <div class="keyBlack blackSpacing"></div>
+                            <div class="keyBlack"></div>
+                            <div class="keyBlack"></div>
+                            <div class="keyBlack blackSpacing"></div>
+
+                            <div class="keyBlack"></div>
+                            <div class="keyBlack blackSpacing"></div>
+                            <div class="keyBlack"></div>
+                            <div class="keyBlack"></div>
+                            <div class="keyBlack blackSpacing"></div>
+                            
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+
+            
+            <div class="subPage" id="HomePage" style="display:none">HomePage</div>
+            <div class="subPage" id="InstrumentsPage" style="display:none">InstrumentsPage</div>
+            <div class="subPage" id="ToolsPage" style="display:none">ToolsPage</div>
+            <div class="subPage" id="FreeplayPage">FreeplayPage</div>
+            <div class="subPage" id="LearnPage" style="display:none">LearnPage not included in this version</div>
+            <div class="subPage" id="SettingsPage" style="display:none">SettingsPage</div>       
+     
+        </section>
+
+        
+    
+    </main>
+
+    
+</div>
+
+
+<!-- TODO move scripts to imports -->
+
+<script type="module" src="./src/main.ts"></script>
+
+ 
+
+
+
+
+
+
+
+
+</body>
+
+
+
+</html>

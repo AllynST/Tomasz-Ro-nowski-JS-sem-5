@@ -29,7 +29,7 @@ export function handleKeyboardClick(keyCode:string){
 } 
 
 
-function recordStateChecker(keyCode){
+function recordStateChecker(keyCode:string){
     if((Recorder.recordState == true)){
         Recorder.recordKey(keyCode);
     } 

@@ -1,0 +1,198 @@
+div#TracksPage{
+    height: 100%;
+    width:100%;
+  
+}
+
+div.trackAreaHeader{
+    width:100%;
+    height:5%;
+    margin-bottom:20px;
+
+    >h1{
+        border-bottom:  1px solid black;
+        font-size: 2em;
+        margin:0px;
+    }
+    
+
+}
+
+div#TrackViewContent{
+    
+    display:flex; 
+    flex-wrap: wrap;
+    overflow: hidden;    
+    width:100%;
+    height:100%;
+}
+
+.trackTimeLineBar{
+    position:absolute;
+    top:0px;
+    width:100%;
+    height:5px;
+    background-color: black;
+    z-index:2;
+}
+.trackCurrentTime{
+    background-color: red;
+    transition: all 0.1s;
+    width: 0px;
+    height: 5px;
+}
+
+
+
+
+
+
+div#TrackVisContainer{
+    z-index: 1;
+   ;
+    border-radius: 10px;
+    position:relative;
+    overflow: hidden;
+    width:88%;
+    height: 80%;
+    
+    canvas#trackVisualiser{
+        z-index: 1;
+        border-radius: 10px;
+        position:absolute;
+        left:0px;
+        bottom:0px;
+        width:100%;
+        height:800px;
+        background-color: black;
+    }
+}
+div#TrackList{
+    overflow: hidden;
+    gap:15px;
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: left;
+    align-items: center;    
+    width:10%;
+    height:80%;
+
+    #createTrackBtn{
+    
+        border-radius: 10px;
+        border:2px solid grey;
+        width:40px;
+        
+        height:40px;
+    }
+}
+
+
+
+.trackLabel{
+    display:flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: space-around;
+
+    position:relative;
+    padding:20px;
+    width:100px;
+    border-radius: 10px;    
+    height:50px;
+    background-color: #202C59;
+
+    p{
+        width:100%; 
+        margin: 0;
+        padding: 0;
+    }
+    .labelIcon{   
+        background-size: cover;
+        width:30px;   
+        height:30px;
+    }
+    .muteBtn{
+        background-image: url("../public/speaker-filled-audio-tool.png");
+    }
+    .muted{
+        background-image: url("../public/mute.png");
+    }
+    .deleteBtn{
+        background-image: url("../public/trash-can.png");    
+    }
+    .clearBtn{
+        background-image: url(../public/clear-format.png);
+    }
+}
+
+
+
+
+#visualiserKeyboard{
+    position: absolute;
+    bottom: 0px;
+    background-color: magenta;
+    width:100%;
+    height:50px;
+    z-index: 3;
+    display:flex;
+    
+
+    #octaveSelector{
+        
+        position:absolute;
+        width:100%;
+        height:100%;
+        z-index: 3;
+        display:flex;
+
+        .octave{
+            transition: all 0.5s;
+            width: calc(100%/7);
+            height: 100%;
+            background-color: #00000070;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        .octaveHovered{
+            background-color: transparent;
+        }
+        
+    }
+
+    
+    #visualiserWhiteKeys{
+        display:flex;
+        position: absolute;
+       
+        width:100%;
+        height: 100%;
+    
+        .visualiserKeyWhite{
+            border:1px black solid;
+            background-color: white;
+            
+            
+            height:100%;
+            width:calc(100%/7);
+            font-size: 0.5em;
+            font-weight: bold;
+
+            display:flex;
+            justify-content: center;
+            align-items: flex-end;
+        }
+    }
+
+   
+    .visualiserKeyBlack{
+
+    }
+}
+
+
+

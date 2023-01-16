@@ -17,29 +17,15 @@ let modal = document.querySelector("#addTrackModalContainer");
 function connectMouseKeys() {
     const pianoKeysWhite = Array.from(document.querySelectorAll(".keyWhite"));
     const pianoKeysBlack = Array.from(document.querySelectorAll(".keyBlack"));
-    let i = 6;
     pianoKeysWhite.forEach((elem) => {
-        elem.id = `W${i}`;
         elem.addEventListener("click", (event) => {
-            handleMouseClick(elem.id);
-            // event.target.style.opacity ="0.5"
-            // setTimeout(()=>{
-            //     event.target.style.opacity ="1"
-            // },100)
+            handleMouseClick(event.target.id);
         });
-        i++;
     });
-    i = 4;
     pianoKeysBlack.forEach((elem) => {
-        elem.id = `B${i}`;
         elem.addEventListener("click", (event) => {
-            handleMouseClick(elem.id);
-            // event.target.style.backgroundColor ="#222422"
-            // setTimeout(()=>{
-            //     event.target.style.backgroundColor ="black"
-            // },100)
+            handleMouseClick(event.target.id);
         });
-        i++;
     });
 }
 //Function used to connect the keyboard keys
@@ -109,4 +95,6 @@ function connectAsideBulletBtn() {
         asideBulletBtn.style.transform = asideState ? "rotate(0deg)" : "rotate(180deg)";
         asideState = !asideState;
     });
+}
+export function setVisualiserHeight() {
 }

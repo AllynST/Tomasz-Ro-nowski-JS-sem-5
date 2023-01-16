@@ -1,5 +1,5 @@
 import { Note } from "./Note.js";
-import Piano from "./Piano.js";
+import Piano from "./Instruments/Piano.js";
 import { Recorder } from "./Recorder.js";
 import TimeLine from "./TimeLine.js";
 export function handleMouseClick(keyCode) {

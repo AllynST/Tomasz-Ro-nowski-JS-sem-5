@@ -42,7 +42,7 @@ export function createTrackElem(Track:Track):void{
 
         connectTrackListeners(label,muteBtn,deleteBtn,clearBtn)       
 
-        trackContainer.prepend(label);
+        trackContainer!.prepend(label);
        
 
        

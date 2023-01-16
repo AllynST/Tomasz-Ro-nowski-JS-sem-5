@@ -1,14 +1,16 @@
+import Player from "./Player.js";
 import TimeLine from "./TimeLine.js";
 import { createCustomElement } from "./helpers.js";
 export function createTrackElem(Track) {
     let trackContainer = document.getElementById("TrackList");
     const trackNameP = createCustomElement("p", {
-        innerText: Track.name
+        innerText: Track.name,
+        id: Track.index
     });
     trackNameP.style.color = Track.color;
     const muteBtn = createCustomElement("div", {
         id: Track.index,
-        className: "labelIcon muteBtn"
+        className: "labelIcon muteBtn",
     });
     const deleteBtn = createCustomElement("div", {
         id: Track.index,
@@ -29,7 +31,6 @@ export function createTrackElem(Track) {
         ]
     });
     connectTrackListeners(label, muteBtn, deleteBtn, clearBtn);
-    console.log("track appended");
     trackContainer.prepend(label);
 }
 function connectTrackListeners(label, muteBtn, deleteBtn, clearBtn) {
@@ -41,11 +42,14 @@ function connectTrackListeners(label, muteBtn, deleteBtn, clearBtn) {
     muteBtn.addEventListener("click", (e) => {
         console.log("Track muted: " + e.target.id);
         e.target.classList.toggle("muted");
+        Player.muteTrack(e.target.id);
     });
     deleteBtn.addEventListener("click", (e) => {
         console.log("TrackDeleted: " + e.target.id);
+        TimeLine.deleteTrack(e.target.id);
     });
     clearBtn.addEventListener("click", (e) => {
         console.log("Track: " + e.target.id + " cleared");
+        TimeLine.clearTrack(e.target.id);
     });
 }

@@ -14,7 +14,6 @@ Recorder.recordKey = (keyCode) => {
 };
 Recorder.handleRecordState = () => {
     Recorder.recordState = !Recorder.recordState;
-    console.log(Recorder.recordState);
     if (Recorder.recordState === false) {
         _a.Context.suspend();
     }

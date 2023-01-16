@@ -27,21 +27,41 @@ div#TrackViewContent{
     height:100%;
 }
 
+.trackTimeLineBar{
+    position:absolute;
+    top:0px;
+    width:100%;
+    height:5px;
+    background-color: black;
+    z-index:2;
+}
+.trackCurrentTime{
+    background-color: red;
+    transition: all 0.1s;
+    width: 0px;
+    height: 5px;
+}
+
 canvas#trackVisualiser{
+    z-index: 1;
     border-radius: 10px;
     position:absolute;
     left:0px;
     bottom:0px;
     width:100%;
     height:800px;
-    background-color: cadetblue;
+     background-color: black; 
 }
 
 
 
 
 div#TrackVisContainer{
+    z-index: 1;
+    background-color: black;
+    border-radius: 10px;
     position:relative;
+    overflow: hidden;
     width:90%;
     height: 80%;
         
@@ -101,5 +121,21 @@ div#TrackList{
 }
 .clearBtn{
     background-image: url(../images/clear-format.png);
+}
+
+
+#visualiserKeyboard{
+    position: absolute;
+    bottom: 0px;
+    background-color: magenta;
+    width:100%;
+    height:50px;
+    z-index: 3;
+}
+#visualiserKeyboard .visualiserKeyWhite{
+
+}
+#visualiserKeyboard .visualiserKeyBlack{
+    
 }
 

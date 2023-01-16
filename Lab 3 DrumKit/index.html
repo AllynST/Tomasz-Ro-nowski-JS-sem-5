@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="./CSS/keyboard.css"">
         <link rel="stylesheet" href="./CSS/TrackPage.css" />
         <script src="https://cdn.tailwindcss.com"></script>
+        
     </head>
     <body>
 
@@ -87,7 +88,13 @@
                         <button id="createTrackBtn">+</button>
                     </div>
                     <div id="TrackVisContainer">
+                        <div class="trackTimeLineBar">
+                            <div class="trackCurrentTime"></div>
+                        </div>
                         <canvas id="trackVisualiser"></canvas>
+                        <div id="visualiserKeyboard">
+
+                        </div>
                         <!-- TODO KEYBOARD LAYER at the bottom -->
                     </div>
                     
@@ -95,27 +102,31 @@
                         
                         <div id="whiteContainer">     
                                           
+                            <div class="keyWhite" id="C2"></div>
+                            <div class="keyWhite" id="D2"></div>
+                            <div class="keyWhite" id="E2"></div>
+                            <div class="keyWhite" id="F2"></div>
+                            <div class="keyWhite" id="G2"></div>
+                            <div class="keyWhite" id="A2"></div>
+                            <div class="keyWhite" id="B2"></div>
+
+                            <div class="keyWhite" id="C3"></div>
+                            <div class="keyWhite" id="D3"></div>
+                            <div class="keyWhite" id="E3"></div>
+                            <div class="keyWhite" id="F3"></div>
+                            <div class="keyWhite" id="G3"></div>
+                            <div class="keyWhite" id="A3"></div>
+                            <div class="keyWhite" id="B3"></div>
+
+                            <div class="keyWhite" id="C4"></div>
+                            <div class="keyWhite" id="D4"></div>
+                            <div class="keyWhite" id="E4"></div>
+                            <div class="keyWhite" id="F4"></div>
+                            <div class="keyWhite" id="G4"></div>
                             <div class="keyWhite" id="A4"></div>
-                            <div class="keyWhite"></div>
-                            <div class="keyWhite"></div>
-                            <div class="keyWhite"></div>
-                            <div class="keyWhite"></div>
-                            <div class="keyWhite"></div>
-                            <div class="keyWhite"></div>
-                            <div class="keyWhite"></div>
-                            <div class="keyWhite"></div>
-                            <div class="keyWhite"></div>
-                            <div class="keyWhite"></div>
-                            <div class="keyWhite"></div>
-                            <div class="keyWhite"></div>
-                            <div class="keyWhite"></div>
-                            <div class="keyWhite"></div>
-                            <div class="keyWhite"></div>
-                            <div class="keyWhite"></div>
-                            <div class="keyWhite"></div>
-                            <div class="keyWhite"></div>
-                            <div class="keyWhite"></div>
-                            <div class="keyWhite"></div>
+                            <div class="keyWhite" id="B4"></div>
+                            
+                            
                            
                         </div>
         
@@ -141,7 +152,7 @@
                
             </div>
 
-
+            
             <div id="HomePage" style="display:none">HomePage</div>
             <div id="InstrumentsPage" style="display:none">InstrumentsPage</div>
             <div id="ToolsPage" style="display:none">ToolsPage</div>
@@ -220,11 +231,14 @@
     <audio class="DrumKey" src="./DrumSounds/Bass-Drum-Hit-Level-2a-www.fesliyanstudios.com.mp3" id="O"/>
 
 </div>
--->
+
 <!-- TODO move scripts to imports -->
 
 <script type="module" src="./JS/main.js"></script>
+<script src="https://unpkg.com/tone">
 
+export default "tone";
+</script>
 
  
 

@@ -1,6 +1,6 @@
 var KeyboardValues;
 (function (KeyboardValues) {
-    KeyboardValues["A"] = "W10";
+    KeyboardValues["A"] = "A2";
     KeyboardValues["S"] = "W11";
     KeyboardValues["D"] = "W12";
     KeyboardValues["F"] = "W13";
@@ -14,6 +14,6 @@ var KeyboardValues;
     KeyboardValues["T"] = "B9";
     KeyboardValues["Y"] = "B10";
     KeyboardValues["U"] = "B11";
-    KeyboardValues["o"] = "B12";
+    KeyboardValues["O"] = "B12";
 })(KeyboardValues || (KeyboardValues = {}));
 export default KeyboardValues;

@@ -3,6 +3,7 @@ import { handleKeyboardClick, handleMouseClick } from "./keyboardHandler.js";
 import KeyboardValues from "./keyboardValues.js";
 import { connectAsideBtns } from "./layoutHandler.js";
 import { Track } from "./track.js";
+import { octaveHoverHandler } from "./visualsHandler.js";
 
 interface TrackSettings {
     index: number;
@@ -20,6 +21,7 @@ export function startUP(): void {
     connectModalBtns();    
     connectAsideBtns();
     connectAsideBulletBtn()
+    connectOctaveInteraction();
 }
 
 let modal: HTMLElement = document.querySelector("#addTrackModalContainer");
@@ -29,6 +31,9 @@ function connectMouseKeys(): void {
     const pianoKeysBlack = Array.from(document.querySelectorAll(".keyBlack"));
 
     pianoKeysWhite.forEach((elem: HTMLElement) => {  
+
+
+        elem.innerHTML = elem.id;
 
         elem.addEventListener("click", (event:any) => {
             handleMouseClick(event.target.id);
@@ -142,9 +147,33 @@ function connectAsideBulletBtn(): void{
         
 }
 
+function connectOctaveInteraction(): void{
 
+    let octaves:Element[] = Array.from(document.querySelectorAll('div.octave'));
+
+    octaves.forEach((octaveElem:Element) =>{
+
+        octaveElem.addEventListener('click', (event) => {            
+            const target: HTMLElement = event.target as HTMLElement;
+            console.log("Switched to octave: "+target.id);
+        });
+
+        octaveElem.addEventListener('mouseenter', (event) => {            
+            const target: HTMLElement = event.target as HTMLElement;
+            console.log("Hovered over octave: "+target.id);
+            octaveHoverHandler(parseInt(target.id));
+        });
+    })
+
+    octaves.forEach((octaveElem:Element) =>{
+        
+    })
+
+
+}
 
 export function setVisualiserHeight(){
-    
+    //template
+    //FIXME no dynamic track lenght yet
 }
 

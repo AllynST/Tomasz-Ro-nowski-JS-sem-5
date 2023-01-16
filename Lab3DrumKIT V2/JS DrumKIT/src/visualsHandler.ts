@@ -7,7 +7,9 @@ const trackVisualiser:HTMLCanvasElement = document.querySelector("#trackVisualis
 trackVisualiser.height = 1000;
 trackVisualiser.width = 1600;
 
-const context :CanvasRenderingContext2D = trackVisualiser.getContext("2d")
+const context :CanvasRenderingContext2D = trackVisualiser.getContext("2d");
+
+const octaves:Element[] = Array.from(document.querySelectorAll('div.octave'));
 
 export function keyboardClickVisual(keyCode:string,color:string,delay:number):void{
 
@@ -16,13 +18,13 @@ export function keyboardClickVisual(keyCode:string,color:string,delay:number):vo
 
     setTimeout(() => {       
         let key = document.getElementById(keyCode);
-        let prevColor = key.style.backgroundColor;
-        key.style.backgroundColor = color;
-        key.style.opacity = "0.8";
+        let prevColor = key!.style.backgroundColor;
+        key!.style.backgroundColor = color;
+        key!.style.opacity = "0.8";
 
         setTimeout(() => {
-            key.style.backgroundColor = prevColor;
-            key.style.opacity = "1";
+            key!.style.backgroundColor = prevColor;
+            key!.style.opacity = "1";
         }, 100);
     },delay*1000)
     
@@ -32,11 +34,11 @@ export function keyboardClickVisual(keyCode:string,color:string,delay:number):vo
 export function menuBubbleVisual(targetPosition:number):void{    
     let menuBubble = document.getElementById("menuBubble");
 
-    menuBubble.style.top = targetPosition-12 + "px";    
-    menuBubble.style.borderRadius = "50%"; 
+    menuBubble!.style.top = targetPosition-12 + "px";    
+    menuBubble!.style.borderRadius = "50%"; 
 
     setTimeout(() => {
-      menuBubble.style.borderRadius = "15px 0px 0px 15px";
+      menuBubble!.style.borderRadius = "15px 0px 0px 15px";
     }, 200);
 }
 
@@ -72,9 +74,16 @@ export function VisualiserPlaceNotes(notes:Note[],color:string):void{
 
         
     notes.forEach((note:Note):void => {
-        const posXHelper = parseInt(note.keyCode.slice(1))
-        const positionX = posXHelper*20;
-        const positionY = trackVisualiser.height-(note.startTime/20 * trackVisualiser.height)-110
+
+        
+        const letter:string = note.keyCode[0];
+
+        const letterPos = LetterPosition[letter];
+
+        const octavePos = parseInt(note.keyCode[1])*140;
+        
+        const positionX = letterPos+octavePos;
+        const positionY = trackVisualiser.height-(note.startTime/20 * trackVisualiser.height)-100
         context.beginPath();
         context.fillStyle = color;
         context.rect(positionX,positionY,20,25)
@@ -91,13 +100,29 @@ export function VisualiserClear():void{
 }
 
 
+export function octaveHoverHandler(octaveNr:number){
+    let prev = null;
+
+    if(prev != octaveNr){
+        octaves.forEach((octave:Element)=>{
+            octave.classList.remove("octaveHovered")
+        })
+        octaves[octaveNr].classList.add("octaveHovered")
+        prev = octaveNr;
+    }
+}
 
 
-function visualiserMovement():void{
 
-    //TODO MOVE THE CANVAS
 
-    
+enum LetterPosition{
+    C = 0,
+    D = 20,
+    E = 40,
+    F = 60,
+    G = 80,
+    A = 100,
+    B = 120
 }
 
 
