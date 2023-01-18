@@ -1,9 +1,10 @@
 import TimeLine from "./TimeLine.js";
+import { Visualiser } from "./Visualiser.js";
 import { handleKeyboardClick, handleMouseClick } from "./keyboardHandler.js";
 import KeyboardValues from "./keyboardValues.js";
 import { connectAsideBtns } from "./layoutHandler.js";
 import { Track } from "./track.js";
-import { octaveHoverHandler } from "./visualsHandler.js";
+import { moveKeyboard, octaveHoverHandler } from "./visualsHandler.js";
 
 interface TrackSettings {
     index: number;
@@ -18,37 +19,31 @@ export function startUP(): void {
     connectKeyboardKeys();
     connectAsideBtns();
     connectCreateTrackBtn();
-    connectModalBtns();    
+    connectModalBtns();
     connectAsideBtns();
-    connectAsideBulletBtn()
+    connectAsideBulletBtn();
     connectOctaveInteraction();
+    visualiserContextGetter();
 }
 
-let modal: HTMLElement = document.querySelector("#addTrackModalContainer");
+let modal: HTMLElement = document.querySelector("#addTrackModalContainer")!;
 //Function used to connect the mouseClicks on the piano
 function connectMouseKeys(): void {
     const pianoKeysWhite = Array.from(document.querySelectorAll(".keyWhite"));
     const pianoKeysBlack = Array.from(document.querySelectorAll(".keyBlack"));
-
-    pianoKeysWhite.forEach((elem: HTMLElement) => {  
-
-
+    
+    pianoKeysWhite.forEach((elem: any) => {
         elem.innerHTML = elem.id;
 
-        elem.addEventListener("click", (event:any) => {
+        elem.addEventListener("click", (event: any) => {
             handleMouseClick(event.target.id);
         });
-     
     });
-   
-    pianoKeysBlack.forEach((elem: HTMLElement) => {
-     
 
-        elem.addEventListener("click", (event:any) => {
+    pianoKeysBlack.forEach((elem: HTMLElement) => {
+        elem.addEventListener("click", (event: any) => {
             handleMouseClick(event.target.id);
-           
         });
-   
     });
 }
 //Function used to connect the keyboard keys
@@ -68,41 +63,39 @@ function connectKeyboardKeys(): void {
 }
 //Function used to connect the create track button
 function connectCreateTrackBtn(): void {
-    const modalBtn: HTMLElement = document.querySelector("#createTrackBtn");
+    const modalBtn: HTMLElement = document.querySelector("#createTrackBtn")!;
     modalBtn.style.display = "block";
 
-    modalBtn.addEventListener("click", (event) => {
-        console.log("modal shoudld open");
-        
+    modalBtn.addEventListener("click", () => {
         modal.style.display = "block";
     });
 }
 
 //Function used to connect the buttons in the modal
 function connectModalBtns(): void {
-
     //default values for trackSettings
-    let trackSettings: TrackSettings ={
+    let trackSettings: TrackSettings = {
         index: TimeLine.tracks.length,
         name: `Track ${TimeLine.tracks.length}`,
         color: "white",
     };
 
     let trackInput: HTMLInputElement =
-        document.querySelector("#trackNameInput");
-    let instrumentCards: Element[] = Array.from(
-        document.querySelectorAll(".instrumentCard")
-    );
+        document.querySelector("#trackNameInput")!;
+    // let instrumentCards: Element[] = Array.from(
+    //     document.querySelectorAll(".instrumentCard")!
+    // );
     let colorPickerColors: Element[] = Array.from(
-        document.querySelector("#colorPicker").children
+        document.querySelector("#colorPicker")!.children
     );
-    let addTrackBtn: HTMLElement = document.querySelector("#addTrackBtn");
+    let addTrackBtn: HTMLElement = document.querySelector("#addTrackBtn")!;
 
     colorPickerColors.forEach((color: Element) => {
         //FIXME replace any with correct type
-        color.addEventListener("click", (e:any) => {
+        color.addEventListener("click", (e: any) => {
             trackSettings.color = e.target.style.backgroundColor;
-            const chosenColorBox: HTMLElement = document.querySelector("#chosenColorBox");
+            const chosenColorBox: HTMLElement =
+                document.querySelector("#chosenColorBox")!;
             chosenColorBox.style.backgroundColor = trackSettings.color;
         });
     });
@@ -111,12 +104,12 @@ function connectModalBtns(): void {
         trackSettings.name = trackInput.value;
     });
 
-    instrumentCards.forEach((card: HTMLElement) => {
-        card.addEventListener("click", (e) => {
-            //TODO add instrument interface
-            //trackSettings.instrument = card.id;
-        });
-    });
+    // instrumentCards.forEach((card: HTMLElement) => {
+    //     card.addEventListener("click", (e) => {
+    //         //TODO add instrument interface
+    //         //trackSettings.instrument = card.id;
+    //     });
+    // });
 
     addTrackBtn.addEventListener("click", (e) => {
         trackSettings.index = TimeLine.tracks.length;
@@ -125,55 +118,68 @@ function connectModalBtns(): void {
             trackSettings.name,
             trackSettings.color
         );
-        console.log("track created" + createdTrack)
         TimeLine.addTrack(createdTrack);
 
         modal.style.display = "none";
-
     });
 }
 
-function connectAsideBulletBtn(): void{
-    const asideBulletBtn: HTMLElement = document.querySelector("aside #bulletButton");
-    const asideContainer: HTMLElement = document.querySelector("aside");
+function connectAsideBulletBtn(): void {
+    const asideBulletBtn: HTMLElement = document.querySelector(
+        "aside #bulletButton"
+    )!;
+    const contentWrapper: HTMLElement = document.querySelector("#contentWrapper")!;
+    const asideContainer: HTMLElement = document.querySelector("aside")!;
     let asideState: boolean = true;
     //TODO move to visual handler
-    asideBulletBtn.addEventListener('click', (event) => {
+    asideBulletBtn.addEventListener("click", () => {
         asideContainer.style.left = asideState ? "-13%" : "0%";
-        asideBulletBtn.style.transform = asideState ? "rotate(0deg)" : "rotate(180deg)";
+        // contentWrapper.style.right = asideState ? "0" : "15%";
+        asideBulletBtn.style.transform = asideState
+            ? "rotate(0deg)"
+            : "rotate(180deg)";
         asideState = !asideState;
     });
-
-        
 }
 
-function connectOctaveInteraction(): void{
+function connectOctaveInteraction(): void {
+    let octaves: Element[] = Array.from(
+        document.querySelectorAll("div.octave")
+    );
+    const octaveSelector: HTMLElement = document.querySelector("div#octaveSelector")!;
 
-    let octaves:Element[] = Array.from(document.querySelectorAll('div.octave'));
+    let chosenOctave = 0;
 
-    octaves.forEach((octaveElem:Element) =>{
-
-        octaveElem.addEventListener('click', (event) => {            
+    octaves.forEach((octaveElem: Element) => {
+        octaveElem.addEventListener("click", (event) => {
             const target: HTMLElement = event.target as HTMLElement;
-            console.log("Switched to octave: "+target.id);
+            moveKeyboard(parseInt(target.id));
+            chosenOctave = parseInt(target.id);
         });
 
-        octaveElem.addEventListener('mouseenter', (event) => {            
+        octaveElem.addEventListener("mouseenter", (event) => {
             const target: HTMLElement = event.target as HTMLElement;
-            console.log("Hovered over octave: "+target.id);
             octaveHoverHandler(parseInt(target.id));
         });
-    })
+    });
 
-    octaves.forEach((octaveElem:Element) =>{
-        
-    })
+    octaveSelector.addEventListener("mouseleave", () => {
+        octaveHoverHandler(chosenOctave);
+    });
 
-
+    
 }
 
-export function setVisualiserHeight(){
+export function setVisualiserHeight() {
     //template
     //FIXME no dynamic track lenght yet
 }
 
+function visualiserContextGetter() {
+    const visualiser: HTMLCanvasElement =
+        document.querySelector("#trackVisualiser")!;
+        visualiser.width = 1400;
+        visualiser.height = 800;
+    Visualiser.ctx = visualiser.getContext("2d")!;
+  
+}

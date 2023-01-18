@@ -20,6 +20,7 @@ body {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
+    font-style: italic;
 }
 
 div#wrapper{
@@ -33,6 +34,8 @@ div#wrapper{
   
 }
 main#contentWrapper{
+    position:relative;
+
     width: 100%;
     height: 100%;
 }
@@ -84,7 +87,7 @@ aside#menu{
     transition:all 0.3s;
     z-index:2;
     position:absolute;
-    top:480px;
+    top:310px;
     left:5%;
    
     width:95%;

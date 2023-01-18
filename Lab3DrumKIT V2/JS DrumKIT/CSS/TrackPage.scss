@@ -49,7 +49,7 @@ div#TrackViewContent{
 
 div#TrackVisContainer{
     z-index: 1;
-   ;
+   ;background-color: black;
     border-radius: 10px;
     position:relative;
     overflow: hidden;
@@ -150,7 +150,7 @@ div#TrackList{
 
         .octave{
             transition: all 0.5s;
-            width: calc(100%/7);
+            width: calc(100%/2);
             height: 100%;
             background-color: #00000070;
             justify-content: center;
@@ -189,8 +189,35 @@ div#TrackList{
     }
 
    
-    .visualiserKeyBlack{
-
+    #visualiserBlackKeys{
+        padding-left: 1.45%;
+        width:100%;      
+        display:flex;
+        flex-wrap: wrap;
+        gap:14px;
+        position: absolute;  
+            
+        z-index: 4;
+        
+        div.visualiserKeyBlack{
+            
+            color:white;
+            display:flex;
+            flex-direction: column;
+            
+            align-items: center;
+            justify-content: flex-end;
+            
+            font-size:7px;
+            background-color: black;
+            width:14px;
+            height:24px;
+            
+            
+        }
+        div.visualiserKeyBlackSpacing{
+            margin-right: 27px;
+        }
     }
 }
 

@@ -1,7 +1,6 @@
 import {Note} from "./Note.js"
-import Piano from './Instruments/Piano.js'
-import TimeLine from "./TimeLine.js";
-import { VisualiserPlaceNotes } from "./visualsHandler.js";
+import { playTrackOptimalisation } from "./helpers.js";
+import { Visualiser } from "./Visualiser.js";
 
 export interface Track{
     addNote(Note:Note):void;
@@ -16,7 +15,6 @@ export class Track{
     
     private notes :Note[] = []
     private muted = false;
-    private instrument
     index:number
     color:string
     name:string;
@@ -32,7 +30,9 @@ export class Track{
         if(Note.keyCode == undefined){
             return
         }
-        this.notes.push(Note);       
+        this.notes.push(Note);
+        // Visualiser.addNoteToVisualiser(Note,this.color))       
+        Visualiser.addNoteToVisualiser(Note,this.color);      
         
     }   
 
@@ -43,13 +43,9 @@ export class Track{
     playTrack = ():void =>{
         if(this.muted){
             return
-        }
-        VisualiserPlaceNotes(this.notes,this.color)
-        this.notes.forEach((note:Note) => {    
-            console.log(note)
-            
-            Piano.playSound(note,this.color)
-        });
+        }        
+        playTrackOptimalisation(this.notes,this.color)            
+    
         
     }
 

@@ -7,6 +7,8 @@ import TimeLine from "./TimeLine.js";
 
 export function handleMouseClick(keyCode:string){    
     recordStateChecker(keyCode);
+    console.log("mouse click")
+    console.log(keyCode)
     Piano.playSound(new Note(0,keyCode,1),
     TimeLine.tracks[TimeLine.selectedTrack].color    
     )
@@ -14,7 +16,7 @@ export function handleMouseClick(keyCode:string){
 
 
 export function handleKeyboardClick(keyCode:string){
-    console.log(keyCode)     
+       
     if(keyCode == "SPACE"){
         Recorder.handleRecordState();        
         return;

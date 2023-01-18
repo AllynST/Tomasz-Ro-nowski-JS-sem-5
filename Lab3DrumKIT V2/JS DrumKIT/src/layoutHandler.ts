@@ -8,7 +8,7 @@ const FreeplayPageRef = document.getElementById("FreeplayPage");
 const LearnPageRef = document.getElementById("LearnPage");
 const SettingsPageRef = document.getElementById("SettingsPage");
 
-let prev:string = "FreeplayPage";
+let prev:string = "TracksPage";
 
 export function switchContentPage(pageName:string):void{
 
@@ -60,8 +60,7 @@ export function connectAsideBtns():void{
    
     const asideBtns = Array.from(document.querySelector("#menuOptions")!.children);
     asideBtns.forEach((btn:any)=>{
-        btn.addEventListener("click",()=>{
-            
+        btn.addEventListener("click",()=>{            
             switchContentPage(btn.id)
             menuBubbleVisual(btn.offsetTop);
         })

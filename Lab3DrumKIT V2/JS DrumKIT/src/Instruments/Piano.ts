@@ -2,7 +2,10 @@
 
 import * as Tone from 'tone'
 import { Note } from "../Note.js";
-import KeyboardValues from "../keyboardValues.js";
+
+import pianoSampler from './pianoSampler.js';
+import { Visualiser } from '../Visualiser.js';
+import { keyboardClickVisual, visualiserKeyboardClickVisual } from '../visualsHandler.js';
 // import { keyboardClickVisual } from "../visualsHandler.js";
 
 export interface Piano{
@@ -16,66 +19,30 @@ export class Piano {
             return;
         }
 
-       
-
-        const synth = new Tone.MonoSynth(
-            {
-                "volume": -12,
-                "detune": 0,
-                "portamento": 21,
-                "envelope": {
-                    "attack": 0.05,
-                    "attackCurve": "linear",
-                    "decay": 0.3,
-                    "decayCurve": "exponential",
-                    "release": 0.5,
-                    "releaseCurve": "exponential",
-                    "sustain": 0.4
-                },
-                "filter": {
-                    "Q": 1,
-                    "detune": 15,
-                    "frequency": 0,
-                    "gain": 0,
-                    "rolloff": -12,
-                    "type": "lowpass"
-                },
-                "filterEnvelope": {
-                    "attack": 0.001,
-                    "attackCurve": "linear",
-                    "decay": 0.7,
-                    "decayCurve": "exponential",
-                    "release": 0.8,
-                    "releaseCurve": "exponential",
-                    "sustain": 0.1,
-                    "baseFrequency": 300,
-                    "exponent": 2,
-                    "octaves": 4
-                },
-                "oscillator": {
-                    
-		
-		"partialCount": 0,
-	
-		"phase": 0,
-		"type": "triangle"
-                }
-            })
-		
-        .toDestination()
-        
+        const now = Tone.now();
         if(note.startTime === 0){
-            synth.triggerAttackRelease(note.keyCode,"8n");
+            
+            pianoSampler.triggerAttackRelease(note.keyCode,"4n",now);
+            Visualiser.addNoteToVisualiser(note,color);
+            keyboardClickVisual(note.keyCode,color);
+            visualiserKeyboardClickVisual(note.keyCode,color);
             return;
         }
 
-        synth.triggerAttackRelease(note.keyCode,"8n",`+${note.startTime}`);
-		console.log(note.startTime);
+        setTimeout(()=>{
+            Visualiser.addNoteToVisualiser(note,color);
+            keyboardClickVisual(note.keyCode,color);
+            visualiserKeyboardClickVisual(note.keyCode,color);
+        },note.startTime*1000)
 
-        // console.log(note.keyCode)
         
-        // console.log(color)
-    
+
+        pianoSampler.triggerAttackRelease(note.keyCode,"4n",`${now+note.startTime}`);
+		
+
+
+
+        // Comented out code is for playing sounds with the web audio api withour Tone.js
         // if(note.startTime === undefined){
         //     note.startTime = 0;
         // }

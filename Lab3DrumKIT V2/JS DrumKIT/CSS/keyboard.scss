@@ -1,23 +1,26 @@
 
 
 div#keyboard{
+    transition:all 0.3s;
     background-color: black;
     position:relative;
-    
+    left:0%;
 
     display:flex;
-    width:100%;
+    width:200%;
     height:180px;
 }
 
 #blackContainer,#whiteContainer{
+    z-index: 0;
     height:100%;
     display:flex;    
     position:absolute;
 }
 #blackContainer{
-    padding:0 35px;
-    gap: 20px;
+    padding:0 0 0 45px ;
+    height:0px;
+    gap: 30px;
 }
 .keyBlack{
     box-shadow: -10px 0px 6px 0px rgba(66, 68, 90, 1);
@@ -25,11 +28,13 @@ div#keyboard{
     margin:1px;
     border: solid 2px white;
     border-radius: 0 0 10px 10px;
-    height:35%;
+    height:60px;
     width: 26px;
+    z-index: 5;
+    pointer-events: painted;
 }
 .blackSpacing{
-    margin-right:53px
+    margin-right:63px
 }
 .keyWhite{
     background-color: aliceblue;
@@ -37,7 +42,9 @@ div#keyboard{
     margin:1px;
     border-radius: 0 0 10px 10px;
     height:100%;
-    width: 50px;
+    width: 60px;
+    z-index: 4;
+    pointer-events: painted;
 
     display:flex;
     justify-content: center;

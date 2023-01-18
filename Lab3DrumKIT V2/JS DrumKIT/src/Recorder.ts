@@ -5,7 +5,7 @@ import TimeLine from "./TimeLine.js";
 export interface Recorder{
     recordState:boolean;    
     Context:AudioContext;
-    recordKey(keyCode:string);
+    recordKey(keyCode:string):void;
     handleRecordState():void;
     resetContextTime():void;
 }

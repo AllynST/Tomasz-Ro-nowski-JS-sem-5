@@ -2,6 +2,9 @@ export interface Note{
     startTime:number;
     duration:number;
     keyCode:string;
+
+    visPosX?:number;
+    visPosY?:number;
 }
 
 //This class holds only data about played note

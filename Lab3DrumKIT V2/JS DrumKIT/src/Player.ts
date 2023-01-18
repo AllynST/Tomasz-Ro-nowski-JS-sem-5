@@ -1,6 +1,7 @@
 import { Recorder } from "./Recorder.js";
 import TimeLine from "./TimeLine.js";
-import { VisualiserClear, updateVisualiserState } from "./visualsHandler.js";
+import { Visualiser } from "./Visualiser.js";
+
 
 interface Player {
     playTrack(): void;
@@ -9,11 +10,12 @@ interface Player {
 class Player {
     static playTrack = ():void => {
 
-        updateVisualiserState();
+        // updateVisualiserState();
 
         Recorder.resetContextTime();
+        Visualiser.visualiserStart();
         let interval = setInterval(() => {
-            VisualiserClear();
+            
             TimeLine.tracks.forEach((track) => {
                 track.playTrack();
             });
